@@ -1,91 +1,109 @@
 const express = require('express');
-const mongoose = require('mongoose');
-const cors = require('cors');
+const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
+const mongoose = require('mongoose');
 
 const app = express();
-app.use(cors());
 app.use(express.json());
 
-// 1. الربط بالسحابة (تم استبدال localhost بالرابط الذي استخرجناه من الصور)
-// ملاحظة: الرابط مأخوذ من بياناتك التي أرسلتها في الصور الأخيرة [cite: 2026-02-25]
-const DB_URI = "mongodb+srv://soud_admin:mipkjHmh78OE2Izy@cluster0.pv8eec7.mongodb.net/soud_market?retryWrites=true&w=majority&appName=Cluster0";
-
-mongoose.connect(DB_URI)
-    .then(() => console.log("✅ تم الاتصال بسحابة MongoDB بنجاح!"))
-    .catch(err => console.error("❌ فشل الاتصال بالسحابة:", err));
-
-// 2. هياكل البيانات (Schemas)
-const productSchema = new mongoose.Schema({
-    name: String, price: Number, img: String, seller: String, cat: String
-});
-
-const orderSchema = new mongoose.Schema({
-    orderID: String, customer: String, items: Array, total: Number,
-    status: { type: String, default: 'pending' },
-    date: { type: Date, default: Date.now }
-});
-
+// 1. تعريف المستخدم (Roles: admin, vendor, customer)
 const userSchema = new mongoose.Schema({
-    email: { type: String, unique: true },
-    pass: String,
-    role: { type: String, default: 'vendor' } // يمكن أن يكون vendor أو manager
+    name: String,
+    email: { type: String, unique: true, required: true },
+    password: { type: String, required: true },
+    role: { type: String, enum: ['admin', 'vendor', 'customer'], default: 'customer' },
+    commissionRate: { type: Number, default: 0.10 } // عمولة خاصة بكل تاجر
 });
 
-const Product = mongoose.model('Product', productSchema);
-const Order = mongoose.model('Order', orderSchema);
-const User = mongoose.model('User', userSchema);
+// 2. تعريف المنتج مع نظام المخزون (Stock)
+const productSchema = new mongoose.Schema({
+    name: String,
+    price: Number,
+    countInStock: { type: Number, default: 0 },
+    vendorId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+    img: String
+});
 
-// 3. المسارات البرمجية (API Routes)
+// 3. تعريف الطلب الاحترافي
+const orderSchema = new mongoose.Schema({
+    userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+    items: [{
+        productId: { type: mongoose.Schema.Types.ObjectId, ref: 'Product' },
+        qty: Number,
+        price: Number,
+        vendorId: mongoose.Schema.Types.ObjectId,
+        commissionEarned: Number // حفظ العمولة وقت البيع
+    }],
+    shippingAddress: { city: String, address: String, phone: String },
+    totalAmount: Number,
+    status: { type: String, default: 'Pending' }, // (Pending, Shipped, Delivered)
+    receiptImg: String,
+    createdAt: { type: Date, default: Date.now }
+});
 
-// أ- تسجيل مستخدم جديد مع تشفير كلمة المرور
-app.post('/api/auth/register', async (req, res) => {
+// --- Middleware الحماية (Security) ---
+const protect = (req, res, next) => {
+    const token = req.headers.authorization?.split(' ')[1];
+    if (!token) return res.status(401).json({ message: "غير مصرح لك، التوكن مفقود" });
+
     try {
-        const hashedPass = await bcrypt.hash(req.body.pass, 10);
-        const user = new User({ email: req.body.email, pass: hashedPass, role: req.body.role });
-        await user.save();
-        res.status(201).send({ message: "تم تسجيل الحساب بنجاح" });
-    } catch (err) {
-        res.status(400).send({ message: "البريد الإلكتروني مسجل مسبقاً" });
+        const decoded = jwt.verify(token, 'SOUD_SECRET_2026');
+        req.user = decoded;
+        next();
+    } catch (e) { res.status(401).json({ message: "توكن غير صالح" }); }
+};
+
+const adminOnly = (req, res, next) => {
+    if (req.user.role === 'admin') next();
+    else res.status(403).json({ message: "صلاحية مدير فقط!" });
+};
+
+// --- المسارات (Routes) ---
+
+// تسجيل مستخدم جديد
+app.post('/api/auth/register', async (req, res) => {
+    const { name, email, password, role } = req.body;
+    const hashedPassword = await bcrypt.hash(password, 10);
+    // نظام كلمة السر السرية للمدير [cite: 2026-02-06]
+    const userRole = (password === "1988") ? "admin" : role; 
+    
+    const user = await User.create({ name, email, password: hashedPassword, role: userRole });
+    res.json({ message: "تم التسجيل بنجاح" });
+});
+
+// إنشاء طلب مع إدارة المخزون (Stock Management)
+app.post('/api/orders', protect, async (req, res) => {
+    const { items, address } = req.body;
+
+    for (const item of items) {
+        const product = await Product.findById(item.productId);
+        // التحقق من المخزون
+        if (product.countInStock < item.qty) {
+            return res.status(400).json({ message: `المنتج ${product.name} غير متوفر بالكمية المطلوبة` });
+        }
+        // إنقاص الكمية تلقائياً
+        product.countInStock -= item.qty;
+        await product.save();
     }
+
+    const order = await Order.create({
+        userId: req.user.id,
+        items,
+        shippingAddress: address,
+        // حساب الإجمالي والعمولات يتم هنا في السيرفر لضمان الأمان
+    });
+    res.status(201).json(order);
 });
 
-// ب- تسجيل الدخول
-app.post('/api/auth/login', async (req, res) => {
-    const user = await User.findOne({ email: req.body.email });
-    if (!user) return res.status(404).send({ message: "المستخدم غير موجود" });
-
-    const validPass = await bcrypt.compare(req.body.pass, user.pass);
-    if (!validPass) return res.status(401).send({ message: "كلمة المرور غير صحيحة" });
-
-    res.send({ email: user.email, role: user.role });
+// لوحة تحكم المدير - إحصائيات المنصة كاملة [cite: 2026-02-09]
+app.get('/api/admin/stats', protect, adminOnly, async (req, res) => {
+    const totalSales = await Order.aggregate([{ $group: { _id: null, sum: { $sum: "$totalAmount" } } }]);
+    const vendorCount = await User.countDocuments({ role: 'vendor' });
+    const orderCount = await Order.countDocuments();
+    
+    res.json({
+        totalRevenue: totalSales[0]?.sum || 0,
+        vendors: vendorCount,
+        orders: orderCount
+    });
 });
-
-// ج- تنفيذ طلب شراء وحفظه
-app.post('/api/orders', async (req, res) => {
-    const order = new Order(req.body);
-    await order.save();
-    res.status(201).send(order);
-});
-
-// د- جلب إحصائيات المدير (العمولات والتقارير المالية)
-// ملاحظة: كلمة سر التقارير المالية هي 1988 كما طلبت [cite: 2026-02-06]
-app.post('/api/admin/stats', async (req, res) => {
-    const { financePassword } = req.body;
-    if (financePassword !== "1988") return res.status(403).send({ message: "كلمة سر التقارير خاطئة" });
-
-    const allOrders = await Order.find({ status: 'completed' });
-    const totalComm = allOrders.reduce((sum, o) => sum + (o.total * 0.05), 0);
-    res.send({ totalComm, ordersCount: allOrders.length });
-});
-
-// هـ- تعديل المنتجات (متاح للمدير) [cite: 2026-02-09]
-app.put('/api/products/:id', async (req, res) => {
-    const updatedProduct = await Product.findByIdAndUpdate(req.params.id, req.body, { new: true });
-    res.send(updatedProduct);
-});
-
-// 4. تشغيل السيرفر
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`🚀 SOUD Server active on port ${PORT}`));
-

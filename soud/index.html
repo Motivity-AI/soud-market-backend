@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOUD Market Live 2026</title>
+    
+    <meta name="theme-color" content="#111">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        :root { --primary: #FFD700; --dark: #111; --success: #25D366; --bg: #f4f7f6; --vendor: #3498db; --danger: #e74c3c; }
+        * { box-sizing: border-box; font-family: 'Cairo', sans-serif; }
+        body { margin: 0; background: var(--bg); padding-bottom: 80px; overflow-x: hidden; }
+        header { background: var(--dark); color: white; padding: 12px 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+        .logo-area { display: flex; align-items: center; gap: 10px; cursor: pointer; user-select: none; }
+        .logo-dot { width: 35px; height: 35px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: black; font-weight: 900; }
+        .container { padding: 15px 5%; }
+        .page-section { display: none; animation: fadeIn 0.3s; }
+        .page-section.active { display: block; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 15px; }
+        .card { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.05); transition: 0.3s; position: relative; }
+        .card img { width: 100%; height: 150px; object-fit: cover; }
+        .card-body { padding: 12px; }
+        input, select, textarea { width: 100%; padding: 12px; margin: 8px 0; border-radius: 10px; border: 1px solid #ddd; outline: none; }
+        .btn { border: none; padding: 12px; border-radius: 10px; cursor: pointer; font-weight: bold; width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px; }
+        .btn-main { background: var(--dark); color: white; }
+        .btn-vendor { background: var(--vendor); color: white; }
+        .bottom-nav { position: fixed; bottom: 0; width: 100%; background: white; display: flex; justify-content: space-around; padding: 12px; border-top: 1px solid #eee; z-index: 1001; }
+        .nav-item { text-align: center; font-size: 0.7rem; color: #888; cursor: pointer; flex: 1; }
+        .nav-item.active { color: var(--vendor); font-weight: 900; }
+        .hidden { display: none; }
+        .modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 2000; display: none; align-items: center; justify-content: center; }
+        .modal-content { background: white; width: 92%; max-width: 450px; border-radius: 20px; padding: 20px; max-height: 85vh; overflow-y: auto; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo-area" id="logo-trigger">
+        <div class="logo-dot">S</div>
+        <div class="logo-text">SOUD MARKET</div>
+    </div>
+    <div onclick="toggleCart(true)" style="position:relative; cursor:pointer;">
+        <i class="fa-solid fa-bag-shopping fa-xl"></i>
+        <span id="cart-count" style="background:var(--danger); color:white; border-radius:50%; width:18px; height:18px; font-size:0.7rem; position:absolute; top:-8px; right:-8px; display:flex; align-items:center; justify-content:center;">0</span>
+    </div>
+</header>
+
+<section id="shop-page" class="page-section active">
+    <div class="container">
+        <input type="text" onkeyup="searchProds(this.value)" placeholder="ابحث في السوق...">
+        <div id="product-grid" class="grid"></div>
+    </div>
+</section>
+
+<section id="auth-page" class="page-section">
+    <div class="container">
+        <div id="login-box">
+            <h3>تسجيل الدخول</h3>
+            <input type="email" id="auth-email" placeholder="البريد الإلكتروني">
+            <input type="password" id="auth-pass" placeholder="كلمة المرور">
+            <button class="btn btn-vendor" onclick="login()">دخول</button>
+        </div>
+        <div id="vendor-dash" class="hidden">
+            <h3>مرحباً بك في لوحة البائع</h3>
+            <button class="btn btn-main" onclick="logout()">تسجيل خروج</button>
+        </div>
+    </div>
+</section>
+
+<nav class="bottom-nav">
+    <div class="nav-item active" onclick="nav('shop-page', this)"><i class="fa-solid fa-house"></i><div>الرئيسية</div></div>
+    <div class="nav-item" onclick="nav('auth-page', this)"><i class="fa-solid fa-user"></i><div>حسابي</div></div>
+</nav>
+
+<div id="cart-modal" class="modal">
+    <div class="modal-content">
+        <h3>سلة المشتريات</h3><hr>
+        <div id="cart-list"></div>
+        <input type="text" id="cust-name" placeholder="اسمك الكامل">
+        <button class="btn" style="background:var(--success); color:white;" onclick="confirmOrder()">تأكيد الطلب</button>
+        <button class="btn" onclick="toggleCart(false)">إغلاق</button>
+    </div>
+</div>
+
+<script>
+// --- الربط بالسيرفر العالمي ---
+const API_URL = "https://soud-market-backend.onrender.com/api"; 
+
+let products = [];
+let cart = [];
+
+// جلب المنتجات من السيرفر
+async function fetchProducts() {
+    try {
+        const res = await fetch(`${API_URL}/products`);
+        products = await res.json();
+        renderShop();
+    } catch (err) { console.error("خطأ في جلب البيانات"); }
+}
+
+function renderShop(data = products) {
+    document.getElementById('product-grid').innerHTML = data.map(p => `
+        <div class="card">
+            <img src="${p.img || 'https://via.placeholder.com/150'}">
+            <div class="card-body">
+                <h4>${p.name}</h4>
+                <div style="color:var(--danger); font-weight:bold;">${p.price.toLocaleString()} ج.س</div>
+                <button class="btn btn-main" onclick="addToCart('${p._id}')">أضف للسلة</button>
+            </div>
+        </div>
+    `).join('');
+}
+
+async function confirmOrder() {
+    const name = document.getElementById('cust-name').value;
+    if (!name || cart.length === 0) return alert("أكمل البيانات");
+
+    const orderData = {
+        customer: name,
+        items: cart,
+        total: cart.reduce((a, b) => a + (b.price * b.qty), 0)
+    };
+
+    const res = await fetch(`${API_URL}/orders`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(orderData)
+    });
+
+    if (res.ok) {
+        alert("تم إرسال طلبك بنجاح!");
+        cart = [];
+        toggleCart(false);
+    }
+}
+
+function addToCart(id) {
+    const p = products.find(x => x._id === id);
+    cart.push({...p, qty: 1});
+    document.getElementById('cart-count').innerText = cart.length;
+}
+
+function nav(id, el) {
+    document.querySelectorAll('.page-section').forEach(p => p.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+}
+
+function toggleCart(s) { document.getElementById('cart-modal').style.display = s ? 'flex' : 'none'; }
+
+// تشغيل عند الفتح
+fetchProducts();
+</script>
+</body>
+</html>

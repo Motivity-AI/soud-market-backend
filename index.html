@@ -3,38 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SOUD Market Live 2026</title>
-    
-    <meta name="theme-color" content="#111">
+    <title>SOUD Market | أمازون السودان</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
     <style>
         :root { --primary: #FFD700; --dark: #111; --success: #25D366; --bg: #f4f7f6; --vendor: #3498db; --danger: #e74c3c; }
         * { box-sizing: border-box; font-family: 'Cairo', sans-serif; }
         body { margin: 0; background: var(--bg); padding-bottom: 80px; overflow-x: hidden; }
+
         header { background: var(--dark); color: white; padding: 12px 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
         .logo-area { display: flex; align-items: center; gap: 10px; cursor: pointer; user-select: none; }
-        .logo-dot { width: 35px; height: 35px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: black; font-weight: 900; }
+        .logo-dot { width: 35px; height: 35px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: black; font-weight: 900; font-size: 1.2rem; }
+        .logo-text { font-weight: 900; font-size: 1.2rem; }
+
         .container { padding: 15px 5%; }
+        .search-area { background: white; padding: 15px 5%; position: sticky; top: 55px; z-index: 999; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        .cat-scroll { display: flex; gap: 10px; overflow-x: auto; padding: 10px 0; scrollbar-width: none; }
+        .cat-pill { padding: 6px 18px; border-radius: 20px; border: 1px solid #ddd; background: white; font-size: 0.8rem; cursor: pointer; white-space: nowrap; }
+        .cat-pill.active { background: var(--dark); color: white; border-color: var(--dark); }
+
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 15px; }
+        .card { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.05); position: relative; display: flex; flex-direction: column; }
+        .card-slider { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; height: 160px; background: #eee; cursor: pointer; }
+        .card-slider img { flex: 0 0 100%; object-fit: cover; scroll-snap-align: start; }
+        .card-body { padding: 12px; flex-grow: 1; }
+        .price { color: #e67e22; font-weight: 900; }
+
         .page-section { display: none; animation: fadeIn 0.3s; }
         .page-section.active { display: block; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 15px; }
-        .card { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.05); transition: 0.3s; position: relative; }
-        .card img { width: 100%; height: 150px; object-fit: cover; }
-        .card-body { padding: 12px; }
-        input, select, textarea { width: 100%; padding: 12px; margin: 8px 0; border-radius: 10px; border: 1px solid #ddd; outline: none; }
-        .btn { border: none; padding: 12px; border-radius: 10px; cursor: pointer; font-weight: bold; width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        .modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 2000; display: none; align-items: center; justify-content: center; }
+        .modal-content { background: white; width: 92%; max-width: 450px; border-radius: 20px; max-height: 85vh; overflow-y: auto; padding: 20px; position: relative; }
+
+        .btn { border: none; padding: 12px; border-radius: 12px; cursor: pointer; font-weight: bold; width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px; }
         .btn-main { background: var(--dark); color: white; }
         .btn-vendor { background: var(--vendor); color: white; }
+        
         .bottom-nav { position: fixed; bottom: 0; width: 100%; background: white; display: flex; justify-content: space-around; padding: 12px; border-top: 1px solid #eee; z-index: 1001; }
         .nav-item { text-align: center; font-size: 0.7rem; color: #888; cursor: pointer; flex: 1; }
         .nav-item.active { color: var(--vendor); font-weight: 900; }
+        .nav-item i { font-size: 1.3rem; display: block; margin-bottom: 2px; }
+
+        input, textarea, select { width: 100%; padding: 12px; margin: 8px 0; border-radius: 10px; border: 1px solid #ddd; background: #f9f9f9; outline: none; }
+        .img-slot-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+        .img-slot { height: 70px; border: 2px dashed #ccc; border-radius: 10px; display: flex; align-items: center; justify-content: center; cursor: pointer; background-size: cover; background-position: center; }
         .hidden { display: none; }
-        .modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 2000; display: none; align-items: center; justify-content: center; }
-        .modal-content { background: white; width: 92%; max-width: 450px; border-radius: 20px; padding: 20px; max-height: 85vh; overflow-y: auto; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
 </head>
 <body>
@@ -46,114 +60,218 @@
     </div>
     <div onclick="toggleCart(true)" style="position:relative; cursor:pointer;">
         <i class="fa-solid fa-bag-shopping fa-xl"></i>
-        <span id="cart-count" style="background:var(--danger); color:white; border-radius:50%; width:18px; height:18px; font-size:0.7rem; position:absolute; top:-8px; right:-8px; display:flex; align-items:center; justify-content:center;">0</span>
+        <span id="cart-count" style="position:absolute; top:-8px; right:-8px; background:var(--danger); color:white; border-radius:50%; width:18px; height:18px; font-size:0.7rem; display:flex; align-items:center; justify-content:center;">0</span>
     </div>
 </header>
 
+<div id="search-container" class="search-area">
+    <input type="text" id="search-input" onkeyup="search()" placeholder="بحث في SOUD Market...">
+    <div class="cat-scroll"></div>
+</div>
+
 <section id="shop-page" class="page-section active">
     <div class="container">
-        <input type="text" onkeyup="searchProds(this.value)" placeholder="ابحث في السوق...">
         <div id="product-grid" class="grid"></div>
     </div>
 </section>
 
-<section id="auth-page" class="page-section">
+<section id="user-page" class="page-section">
     <div class="container">
-        <div id="login-box">
-            <h3>تسجيل الدخول</h3>
-            <input type="email" id="auth-email" placeholder="البريد الإلكتروني">
-            <input type="password" id="auth-pass" placeholder="كلمة المرور">
-            <button class="btn btn-vendor" onclick="login()">دخول</button>
+        <h3><i class="fa-solid fa-clock-rotate-left"></i> طلباتي السابقة</h3>
+        <div id="history-list"></div>
+    </div>
+</section>
+
+<section id="vendor-page" class="page-section">
+    <div class="container">
+        <div id="v-login-box" class="card-body" style="background:white; border-radius:15px; padding:25px;">
+            <h3>تسجيل دخول الإدارة</h3>
+            <input type="email" id="v-email" placeholder="البريد الإلكتروني">
+            <input type="password" id="v-pass" placeholder="كلمة المرور">
+            <button class="btn btn-vendor" onclick="loginV()">دخول</button>
         </div>
-        <div id="vendor-dash" class="hidden">
-            <h3>مرحباً بك في لوحة البائع</h3>
-            <button class="btn btn-main" onclick="logout()">تسجيل خروج</button>
+        <div id="v-dash" class="hidden">
+            <div style="background:white; padding:20px; border-radius:15px; border-top:5px solid var(--vendor);">
+                <h3>إضافة منتج للسحابة</h3>
+                <input type="text" id="p-name" placeholder="اسم المنتج">
+                <input type="number" id="p-price" placeholder="السعر">
+                <textarea id="p-desc" placeholder="وصف المنتج..."></textarea>
+                <select id="p-cat">
+                    <option value="صوتيات">صوتيات</option>
+                    <option value="ابتكارات">ابتكارات</option>
+                    <option value="تقنية">تقنية</option>
+                </select>
+                <button class="btn btn-vendor" style="margin-top:15px;" onclick="saveToCloud()">نشر في المتجر العالمي</button>
+            </div>
         </div>
     </div>
 </section>
 
-<nav class="bottom-nav">
-    <div class="nav-item active" onclick="nav('shop-page', this)"><i class="fa-solid fa-house"></i><div>الرئيسية</div></div>
-    <div class="nav-item" onclick="nav('auth-page', this)"><i class="fa-solid fa-user"></i><div>حسابي</div></div>
-</nav>
-
-<div id="cart-modal" class="modal">
+<div id="p-modal" class="modal">
     <div class="modal-content">
-        <h3>سلة المشتريات</h3><hr>
-        <div id="cart-list"></div>
-        <input type="text" id="cust-name" placeholder="اسمك الكامل">
-        <button class="btn" style="background:var(--success); color:white;" onclick="confirmOrder()">تأكيد الطلب</button>
-        <button class="btn" onclick="toggleCart(false)">إغلاق</button>
+        <i class="fa-solid fa-circle-xmark" onclick="closeModal()" style="position:absolute; top:15px; right:15px; font-size:1.8rem; cursor:pointer; z-index:10;"></i>
+        <div id="m-slider" style="display:flex; overflow-x:auto; scroll-snap-type:x mandatory; height:250px; background:#eee; border-radius:15px;"></div>
+        <h2 id="m-title" style="margin:15px 0 5px 0;"></h2>
+        <div id="m-price" style="color:var(--danger); font-weight:900; font-size:1.4rem; margin-bottom:10px;"></div>
+        <p id="m-desc" style="color:#666; font-size:0.9rem; line-height:1.6;"></p>
+        <button class="btn btn-main" id="m-add-btn">أضف للسلة</button>
     </div>
 </div>
 
+<div id="cart-sidebar" class="modal" style="justify-content: flex-start;">
+    <div class="modal-content" style="height:100%; border-radius:0; max-width:400px; margin:0;">
+        <h3>سلة المشتريات</h3><hr>
+        <div id="cart-list"></div>
+        <div id="cart-foot" class="hidden">
+            <input type="text" id="cust-name" placeholder="الاسم للاستلام">
+            <div style="font-weight:900; font-size:1.2rem; padding:10px 0;">الإجمالي: <span id="val-t">0</span> ج.س</div>
+            <button class="btn" style="background:var(--success); color:white;" onclick="sendOrder()">تأكيد الطلب (واتساب) <i class="fa-brands fa-whatsapp"></i></button>
+        </div>
+    </div>
+</div>
+
+<nav class="bottom-nav">
+    <div class="nav-item active" onclick="nav('shop-page', this)"><i class="fa-solid fa-house"></i>الرئيسية</div>
+    <div class="nav-item" onclick="nav('vendor-page', this)"><i class="fa-solid fa-store"></i>بائع</div>
+    <div class="nav-item" onclick="nav('user-page', this)"><i class="fa-solid fa-history"></i>طلباتي</div>
+</nav>
+
 <script>
-// --- الربط بالسيرفر العالمي ---
+// --- إعدادات السيرفر الحقيقي ---
 const API_URL = "https://soud-market-backend.onrender.com/api"; 
 
 let products = [];
 let cart = [];
+let clicks = 0;
 
-// جلب المنتجات من السيرفر
-async function fetchProducts() {
+// 1. جلب المنتجات من السيرفر عند الفتح
+async function fetchAllProducts() {
     try {
         const res = await fetch(`${API_URL}/products`);
         products = await res.json();
-        renderShop();
-    } catch (err) { console.error("خطأ في جلب البيانات"); }
+        render();
+    } catch (e) { console.error("السيرفر لا يستجيب حالياً"); }
 }
 
-function renderShop(data = products) {
+function render(data = products) {
+    const cats = ["الكل", ...new Set(products.map(p => p.cat))];
+    document.querySelector('.cat-scroll').innerHTML = cats.map(c => `<button class="cat-pill ${c==='الكل'?'active':''}" onclick="filter('${c}', this)">${c}</button>`).join('');
+
     document.getElementById('product-grid').innerHTML = data.map(p => `
         <div class="card">
-            <img src="${p.img || 'https://via.placeholder.com/150'}">
-            <div class="card-body">
-                <h4>${p.name}</h4>
-                <div style="color:var(--danger); font-weight:bold;">${p.price.toLocaleString()} ج.س</div>
-                <button class="btn btn-main" onclick="addToCart('${p._id}')">أضف للسلة</button>
+            <div class="card-slider" onclick="openDetails('${p._id}')">
+                <img src="${p.img || 'https://via.placeholder.com/150'}">
             </div>
-        </div>
-    `).join('');
+            <div class="card-body">
+                <h4 style="margin:0; font-size:0.8rem; height:35px; overflow:hidden;">${p.name}</h4>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-top:5px;">
+                    <span class="price">${p.price.toLocaleString()}</span>
+                </div>
+                <button class="btn btn-main" style="padding:5px; margin-top:10px; font-size:0.7rem;" onclick="addToCart('${p._id}')">أضف للسلة</button>
+            </div>
+        </div>`).join('');
 }
 
-async function confirmOrder() {
-    const name = document.getElementById('cust-name').value;
-    if (!name || cart.length === 0) return alert("أكمل البيانات");
+// 2. إضافة منتج للسيرفر (السحابة)
+async function saveToCloud() {
+    const newProduct = {
+        name: document.getElementById('p-name').value,
+        price: parseInt(document.getElementById('p-price').value),
+        desc: document.getElementById('p-desc').value,
+        cat: document.getElementById('p-cat').value,
+        img: "https://via.placeholder.com/400" // يمكنك استبدالها برابط صورة حقيقي
+    };
 
+    const res = await fetch(`${API_URL}/products`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(newProduct)
+    });
+
+    if(res.ok) {
+        alert("تم الحفظ في السحابة بنجاح!");
+        fetchAllProducts(); // تحديث القائمة
+        document.getElementById('p-name').value = "";
+    }
+}
+
+// 3. تأكيد الطلب وإرساله للسيرفر
+async function sendOrder() {
+    const name = document.getElementById('cust-name').value;
+    if(!name) return alert("أدخل اسمك");
+    
     const orderData = {
         customer: name,
         items: cart,
-        total: cart.reduce((a, b) => a + (b.price * b.qty), 0)
+        total: cart.reduce((a,b)=>a+(b.price*b.qty), 0)
     };
 
-    const res = await fetch(`${API_URL}/orders`, {
+    // إرسال للسيرفر أولاً
+    await fetch(`${API_URL}/orders`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(orderData)
     });
 
-    if (res.ok) {
-        alert("تم إرسال طلبك بنجاح!");
-        cart = [];
-        toggleCart(false);
-    }
+    // ثم الواتساب
+    let msg = `طلب جديد من: ${name}\nالإجمالي: ${orderData.total} ج.س`;
+    window.open(`https://wa.me/249123456789?text=${encodeURIComponent(msg)}`);
+    
+    cart = []; updateCart(); toggleCart(false);
+}
+
+// باقي الوظائف المساعدة
+function openDetails(id) {
+    const p = products.find(x => x._id === id);
+    document.getElementById('m-slider').innerHTML = `<img src="${p.img || 'https://via.placeholder.com/400'}" style="width:100%; object-fit:contain;">`;
+    document.getElementById('m-title').innerText = p.name;
+    document.getElementById('m-price').innerText = p.price.toLocaleString() + " ج.س";
+    document.getElementById('m-desc').innerText = p.desc || "منتج عالي الجودة.";
+    document.getElementById('p-modal').style.display = 'flex';
 }
 
 function addToCart(id) {
     const p = products.find(x => x._id === id);
-    cart.push({...p, qty: 1});
-    document.getElementById('cart-count').innerText = cart.length;
+    const item = cart.find(x => x._id === id);
+    if(item) item.qty++; else cart.push({...p, qty: 1});
+    updateCart();
+    toggleCart(true);
+}
+
+function updateCart() {
+    document.getElementById('cart-count').innerText = cart.reduce((a,b)=>a+b.qty, 0);
+    const list = document.getElementById('cart-list');
+    if(cart.length === 0) { list.innerHTML = "<p>السلة فارغة</p>"; document.getElementById('cart-foot').classList.add('hidden'); return; }
+    document.getElementById('cart-foot').classList.remove('hidden');
+    list.innerHTML = cart.map(i => `<div style="display:flex; justify-content:space-between; padding:5px 0;"><span>${i.name} (x${i.qty})</span><b>${(i.price*i.qty).toLocaleString()}</b></div>`).join('');
+    document.getElementById('val-t').innerText = cart.reduce((a,b)=>a+(b.price*b.qty), 0).toLocaleString();
 }
 
 function nav(id, el) {
-    document.querySelectorAll('.page-section').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
     document.getElementById(id).classList.add('active');
+    el.classList.add('active');
 }
 
-function toggleCart(s) { document.getElementById('cart-modal').style.display = s ? 'flex' : 'none'; }
+function loginV() {
+    if(document.getElementById('v-pass').value === "1988") { // كلمة سر الإدارة التي طلبتها
+        document.getElementById('v-login-box').classList.add('hidden');
+        document.getElementById('v-dash').classList.remove('hidden');
+    } else { alert("كلمة السر خطأ"); }
+}
 
-// تشغيل عند الفتح
-fetchProducts();
+function filter(cat, btn) {
+    document.querySelectorAll('.cat-pill').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    render(cat==='الكل'?products:products.filter(p=>p.cat===cat));
+}
+
+function toggleCart(s) { document.getElementById('cart-sidebar').style.display = s ? 'flex' : 'none'; }
+function closeModal() { document.getElementById('p-modal').style.display = 'none'; }
+
+// تشغيل جلب البيانات عند البداية
+fetchAllProducts();
 </script>
 </body>
 </html>

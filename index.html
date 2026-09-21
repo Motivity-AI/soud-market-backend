@@ -2,1093 +2,3037 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>الزبيدي للمنتجات السودانية | Al-Zubaidi Sudanese Products</title>
-    
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts - Cairo & Tajawal -->
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
-    <!-- Chart.js for Dashboard -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        sudan: {
-                            50: '#fdfbf7',
-                            100: '#f7f1e3',
-                            200: '#eddcb9',
-                            300: '#e0bf88',
-                            400: '#d19e59',
-                            500: '#b87c38', // Deep Amber / Sand Gold
-                            600: '#9b5e2c',
-                            700: '#7d4526', // Mahogany / Sandalwood Brown
-                            800: '#673824',
-                            900: '#1e120b', // Rich Black Brown
-                            accent: '#e6a13b', // Bright Gold
-                            green: '#007a3d',  // Sudan Flag Green
-                            red: '#c8102e',    // Sudan Flag Red
-                        }
-                    },
-                    fontFamily: {
-                        cairo: ['Cairo', 'sans-serif'],
-                        tajawal: ['Tajawal', 'sans-serif']
-                    }
-                }
-            }
-        }
-    </script>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+    <meta name="theme-color" content="#090909">
+
+    <meta name="description"
+          content="الزبيدي للمنتجات السودانية الأصيلة — زبدة الفول السوداني والسمن البلدي. كل المنتجات بالطلب.">
+
+    <meta name="keywords"
+          content="الزبيدي, زبدة الفول السوداني, زبدة فول سوداني, السمن البلدي, منتجات سودانية, السودان">
+
+    <title>الزبيدي | المنتجات السودانية الأصيلة</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
     <style>
+
+        /* =========================================================
+           ROOT
+        ========================================================= */
+
+        :root {
+            --black: #070707;
+            --black-soft: #0d0d0d;
+            --black-card: #111111;
+
+            --gold: #c9a227;
+            --gold-light: #e7c75b;
+            --gold-dark: #8d6b12;
+
+            --cream: #f5f0df;
+            --muted: #aaa38f;
+            --white: #ffffff;
+
+            --green: #25d366;
+
+            --border: rgba(201, 162, 39, 0.20);
+
+            --shadow:
+                0 20px 60px rgba(0, 0, 0, 0.55);
+
+            --radius: 24px;
+        }
+
+
+        /* =========================================================
+           RESET
+        ========================================================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: 'Cairo', sans-serif;
-            background-color: #120b07;
-            color: #f3f4f6;
+            font-family: "Cairo", sans-serif;
+            background:
+                radial-gradient(
+                    circle at 50% -10%,
+                    rgba(201, 162, 39, 0.10),
+                    transparent 35%
+                ),
+                var(--black);
+            color: var(--cream);
+            line-height: 1.8;
             overflow-x: hidden;
         }
-        .glass-panel {
-            background: rgba(26, 17, 12, 0.88);
-            backdrop-filter: blur(16px);
-            border: 1px solid rgba(230, 161, 59, 0.22);
+
+        body.menu-open {
+            overflow: hidden;
         }
-        .gold-gradient-text {
-            background: linear-gradient(135deg, #fff3b0 0%, #e6a13b 50%, #b87c38 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+
+        a {
+            color: inherit;
+            text-decoration: none;
         }
-        .gold-bg-gradient {
-            background: linear-gradient(135deg, #e6a13b 0%, #b87c38 100%);
+
+        button {
+            font-family: inherit;
         }
-        .sudan-pattern {
-            background-image: radial-gradient(#e6a13b 0.75px, transparent 0.75px), radial-gradient(#e6a13b 0.75px, #120b07 0.75px);
-            background-size: 30px 30px;
-            background-position: 0 0,15px 15px;
-            opacity: 0.07;
+
+        img {
+            max-width: 100%;
+            display: block;
         }
-        .custom-scrollbar::-webkit-scrollbar {
-            width: 6px;
+
+
+        /* =========================================================
+           SCROLLBAR
+        ========================================================= */
+
+        ::-webkit-scrollbar {
+            width: 9px;
         }
-        .custom-scrollbar::-webkit-scrollbar-track {
-            background: #1a110c;
+
+        ::-webkit-scrollbar-track {
+            background: #050505;
         }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: #b87c38;
-            border-radius: 4px;
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(
+                var(--gold-dark),
+                var(--gold-light)
+            );
+            border-radius: 20px;
         }
+
+
+        /* =========================================================
+           UTILITIES
+        ========================================================= */
+
+        .container {
+            width: min(1180px, calc(100% - 40px));
+            margin: auto;
+        }
+
+        .gold {
+            color: var(--gold-light);
+        }
+
+        .section {
+            padding: 110px 0;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 760px;
+            margin: 0 auto 55px;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--gold-light);
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            margin-bottom: 14px;
+        }
+
+        .eyebrow::before,
+        .eyebrow::after {
+            content: "";
+            width: 28px;
+            height: 1px;
+            background: var(--gold);
+        }
+
+        .section-title {
+            font-family: "Playfair Display", serif;
+            font-size: clamp(34px, 5vw, 58px);
+            line-height: 1.2;
+            color: var(--white);
+            margin-bottom: 18px;
+        }
+
+        .section-title span {
+            color: var(--gold-light);
+        }
+
+        .section-description {
+            color: var(--muted);
+            font-size: 16px;
+            max-width: 650px;
+            margin: auto;
+        }
+
+
+        /* =========================================================
+           NAVBAR
+        ========================================================= */
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            right: 0;
+            left: 0;
+            height: 82px;
+            z-index: 1000;
+
+            background:
+                linear-gradient(
+                    to bottom,
+                    rgba(5, 5, 5, 0.96),
+                    rgba(5, 5, 5, 0.80)
+                );
+
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+
+            border-bottom: 1px solid rgba(201, 162, 39, 0.12);
+
+            transition: 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            height: 72px;
+            background: rgba(5, 5, 5, 0.96);
+            box-shadow: 0 10px 35px rgba(0,0,0,.35);
+        }
+
+        .nav-inner {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            min-width: max-content;
+        }
+
+        .brand-mark {
+            width: 43px;
+            height: 43px;
+            border: 1px solid var(--gold);
+            border-radius: 50%;
+
+            display: grid;
+            place-items: center;
+
+            color: var(--gold-light);
+
+            box-shadow:
+                0 0 25px rgba(201, 162, 39, 0.12);
+        }
+
+        .brand-name {
+            font-family: "Playfair Display", serif;
+            font-size: 26px;
+            font-weight: 800;
+            color: var(--gold-light);
+            line-height: 1;
+        }
+
+        .brand-sub {
+            display: block;
+            font-family: "Cairo", sans-serif;
+            font-size: 8px;
+            letter-spacing: 2px;
+            color: #8d8777;
+            margin-top: 5px;
+            text-align: center;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            position: relative;
+            color: #d7d1c0;
+            font-size: 14px;
+            font-weight: 600;
+            transition: .25s ease;
+        }
+
+        .nav-links a::after {
+            content: "";
+            position: absolute;
+            right: 0;
+            bottom: -8px;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: .25s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold-light);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-order {
+            display: inline-flex !important;
+            align-items: center;
+            gap: 8px;
+
+            padding: 10px 18px;
+            border: 1px solid var(--gold);
+            border-radius: 999px;
+
+            color: var(--gold-light) !important;
+        }
+
+        .nav-order::after {
+            display: none;
+        }
+
+        .nav-order:hover {
+            background: var(--gold);
+            color: #080808 !important;
+        }
+
+        .menu-btn {
+            display: none;
+            width: 44px;
+            height: 44px;
+            border: 1px solid var(--border);
+            background: rgba(255,255,255,.03);
+            color: var(--gold-light);
+            border-radius: 12px;
+            font-size: 19px;
+            cursor: pointer;
+        }
+
+
+        /* =========================================================
+           MOBILE NAV
+        ========================================================= */
+
+        .mobile-menu {
+            position: fixed;
+            inset: 82px 0 0;
+            z-index: 999;
+
+            background:
+                radial-gradient(
+                    circle at top,
+                    rgba(201,162,39,.09),
+                    transparent 40%
+                ),
+                rgba(5,5,5,.98);
+
+            backdrop-filter: blur(20px);
+
+            padding: 35px 25px;
+
+            transform: translateX(100%);
+            transition: .35s ease;
+
+            visibility: hidden;
+            opacity: 0;
+        }
+
+        .mobile-menu.active {
+            transform: translateX(0);
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .mobile-links {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .mobile-links a {
+            padding: 17px 5px;
+            border-bottom: 1px solid rgba(255,255,255,.07);
+            color: #eee8d9;
+            font-size: 17px;
+        }
+
+        .mobile-links a i {
+            width: 30px;
+            color: var(--gold);
+        }
+
+
+        /* =========================================================
+           HERO
+        ========================================================= */
+
+        .hero {
+            min-height: 100vh;
+            padding-top: 82px;
+
+            display: flex;
+            align-items: center;
+
+            position: relative;
+            overflow: hidden;
+
+            background:
+                radial-gradient(
+                    circle at 78% 30%,
+                    rgba(201,162,39,.16),
+                    transparent 28%
+                ),
+                radial-gradient(
+                    circle at 15% 80%,
+                    rgba(201,162,39,.07),
+                    transparent 25%
+                ),
+                #070707;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+
+            background-image:
+                linear-gradient(
+                    rgba(201,162,39,.025) 1px,
+                    transparent 1px
+                ),
+                linear-gradient(
+                    90deg,
+                    rgba(201,162,39,.025) 1px,
+                    transparent 1px
+                );
+
+            background-size: 60px 60px;
+
+            mask-image:
+                linear-gradient(
+                    to bottom,
+                    black,
+                    transparent
+                );
+
+            pointer-events: none;
+        }
+
+        .hero-orbit {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+
+            border: 1px solid rgba(201,162,39,.10);
+            border-radius: 50%;
+
+            left: -230px;
+            top: 100px;
+
+            box-shadow:
+                inset 0 0 100px rgba(201,162,39,.025);
+        }
+
+        .hero-orbit::after {
+            content: "";
+            position: absolute;
+            inset: 50px;
+
+            border: 1px solid rgba(201,162,39,.07);
+            border-radius: 50%;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1.1fr .9fr;
+            align-items: center;
+            gap: 70px;
+        }
+
+        .hero-copy {
+            max-width: 720px;
+        }
+
+        .hero-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+
+            color: var(--gold-light);
+            font-size: 13px;
+            font-weight: 800;
+
+            padding: 8px 14px;
+
+            border:
+                1px solid
+                rgba(201,162,39,.28);
+
+            background:
+                rgba(201,162,39,.05);
+
+            border-radius: 999px;
+
+            margin-bottom: 24px;
+        }
+
+        .hero-label i {
+            font-size: 11px;
+        }
+
+        .hero h1 {
+            font-family: "Playfair Display", serif;
+            font-size: clamp(52px, 8vw, 100px);
+            line-height: .98;
+            letter-spacing: -2px;
+
+            color: var(--white);
+
+            margin-bottom: 25px;
+        }
+
+        .hero h1 span {
+            display: block;
+            color: var(--gold-light);
+        }
+
+        .hero-description {
+            color: #aaa596;
+            font-size: clamp(16px, 2vw, 19px);
+            max-width: 650px;
+            margin-bottom: 32px;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+        }
+
+        .btn {
+            min-height: 52px;
+
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+
+            padding: 0 24px;
+
+            border-radius: 999px;
+
+            font-size: 14px;
+            font-weight: 800;
+
+            transition:
+                transform .25s ease,
+                box-shadow .25s ease,
+                background .25s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .btn-gold {
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--gold-light),
+                    var(--gold)
+                );
+
+            color: #090909;
+
+            box-shadow:
+                0 12px 30px
+                rgba(201,162,39,.17);
+        }
+
+        .btn-gold:hover {
+            box-shadow:
+                0 18px 40px
+                rgba(201,162,39,.28);
+        }
+
+        .btn-outline {
+            border:
+                1px solid
+                rgba(201,162,39,.45);
+
+            color: var(--gold-light);
+            background: rgba(255,255,255,.015);
+        }
+
+        .btn-outline:hover {
+            background: rgba(201,162,39,.08);
+        }
+
+        .hero-visual {
+            position: relative;
+            min-height: 510px;
+
+            display: grid;
+            place-items: center;
+        }
+
+        .hero-emblem {
+            width: min(430px, 80vw);
+            aspect-ratio: 1;
+
+            border:
+                1px solid
+                rgba(201,162,39,.28);
+
+            border-radius: 50%;
+
+            display: grid;
+            place-items: center;
+
+            position: relative;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(201,162,39,.12),
+                    rgba(201,162,39,.025) 45%,
+                    transparent 70%
+                );
+
+            box-shadow:
+                0 0 100px rgba(201,162,39,.07),
+                inset 0 0 80px rgba(201,162,39,.05);
+        }
+
+        .hero-emblem::before {
+            content: "";
+            position: absolute;
+            inset: 30px;
+
+            border:
+                1px solid
+                rgba(201,162,39,.20);
+
+            border-radius: 50%;
+        }
+
+        .hero-emblem::after {
+            content: "";
+            position: absolute;
+            inset: 65px;
+
+            border:
+                1px dashed
+                rgba(201,162,39,.16);
+
+            border-radius: 50%;
+        }
+
+        .emblem-content {
+            position: relative;
+            z-index: 3;
+            text-align: center;
+        }
+
+        .emblem-icon {
+            font-size: 75px;
+            color: var(--gold-light);
+
+            filter:
+                drop-shadow(
+                    0 10px 30px
+                    rgba(201,162,39,.2)
+                );
+
+            margin-bottom: 15px;
+        }
+
+        .emblem-name {
+            font-family: "Playfair Display", serif;
+            font-size: 52px;
+            color: var(--gold-light);
+            line-height: 1;
+        }
+
+        .emblem-subtitle {
+            margin-top: 13px;
+            color: #aaa38f;
+            font-size: 11px;
+            letter-spacing: 3px;
+        }
+
+        .floating-card {
+            position: absolute;
+
+            padding: 13px 17px;
+
+            background:
+                rgba(17,17,17,.90);
+
+            border:
+                1px solid
+                rgba(201,162,39,.20);
+
+            backdrop-filter: blur(15px);
+
+            border-radius: 16px;
+
+            box-shadow: var(--shadow);
+
+            color: #ddd7c6;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .floating-card i {
+            color: var(--gold-light);
+            margin-left: 7px;
+        }
+
+        .floating-one {
+            top: 40px;
+            right: 0;
+        }
+
+        .floating-two {
+            bottom: 90px;
+            left: 0;
+        }
+
+
+        /* =========================================================
+           GOLD DIVIDER
+        ========================================================= */
+
+        .gold-line {
+            width: 100%;
+            height: 1px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    rgba(201,162,39,.35),
+                    transparent
+                );
+        }
+
+
+        /* =========================================================
+           ABOUT
+        ========================================================= */
+
+        .about {
+            background:
+                linear-gradient(
+                    180deg,
+                    #070707,
+                    #0a0a0a
+                );
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: .85fr 1.15fr;
+            gap: 70px;
+            align-items: center;
+        }
+
+        .about-card {
+            min-height: 400px;
+
+            position: relative;
+            overflow: hidden;
+
+            border:
+                1px solid
+                rgba(201,162,39,.18);
+
+            border-radius: var(--radius);
+
+            background:
+                radial-gradient(
+                    circle at 50% 40%,
+                    rgba(201,162,39,.12),
+                    transparent 45%
+                ),
+                #0d0d0d;
+
+            display: grid;
+            place-items: center;
+
+            box-shadow: var(--shadow);
+        }
+
+        .about-card::before {
+            content: "";
+            position: absolute;
+            inset: 25px;
+
+            border:
+                1px solid
+                rgba(201,162,39,.13);
+
+            border-radius: 18px;
+        }
+
+        .about-logo {
+            position: relative;
+            z-index: 2;
+
+            text-align: center;
+        }
+
+        .about-logo-icon {
+            color: var(--gold-light);
+            font-size: 65px;
+            margin-bottom: 15px;
+        }
+
+        .about-logo-name {
+            font-family: "Playfair Display", serif;
+            font-size: 58px;
+            color: var(--gold-light);
+        }
+
+        .about-copy .section-title {
+            text-align: right;
+        }
+
+        .about-copy p {
+            color: #aaa596;
+            font-size: 16px;
+            margin-bottom: 18px;
+        }
+
+        .about-points {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+            margin-top: 30px;
+        }
+
+        .about-point {
+            padding: 18px;
+
+            border:
+                1px solid
+                rgba(255,255,255,.06);
+
+            border-radius: 16px;
+
+            background: rgba(255,255,255,.018);
+        }
+
+        .about-point i {
+            color: var(--gold-light);
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+        .about-point strong {
+            display: block;
+            color: #eee8d9;
+            font-size: 14px;
+        }
+
+        .about-point span {
+            display: block;
+            color: #827e72;
+            font-size: 12px;
+            margin-top: 3px;
+        }
+
+
+        /* =========================================================
+           PRODUCTS
+        ========================================================= */
+
+        .products {
+            background:
+                radial-gradient(
+                    circle at 80% 40%,
+                    rgba(201,162,39,.055),
+                    transparent 30%
+                ),
+                #080808;
+        }
+
+        .order-notice {
+            max-width: 850px;
+            margin: 0 auto 45px;
+
+            padding: 18px 24px;
+
+            border:
+                1px solid
+                rgba(201,162,39,.25);
+
+            border-radius: 18px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(201,162,39,.08),
+                    rgba(255,255,255,.015)
+                );
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+
+            text-align: center;
+        }
+
+        .order-notice i {
+            color: var(--gold-light);
+            font-size: 20px;
+        }
+
+        .order-notice strong {
+            color: var(--gold-light);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .product-card {
+            position: relative;
+            overflow: hidden;
+
+            border:
+                1px solid
+                rgba(255,255,255,.07);
+
+            border-radius: var(--radius);
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #141414,
+                    #0c0c0c
+                );
+
+            transition:
+                transform .3s ease,
+                border-color .3s ease,
+                box-shadow .3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+
+            border-color:
+                rgba(201,162,39,.38);
+
+            box-shadow:
+                0 25px 55px
+                rgba(0,0,0,.45);
+        }
+
+        .product-image {
+            height: 260px;
+
+            position: relative;
+
+            display: grid;
+            place-items: center;
+
+            overflow: hidden;
+
+            background:
+                radial-gradient(
+                    circle at 50% 45%,
+                    rgba(201,162,39,.16),
+                    transparent 52%
+                ),
+                #101010;
+        }
+
+        .product-image::before {
+            content: "";
+
+            position: absolute;
+
+            width: 180px;
+            height: 180px;
+
+            border:
+                1px solid
+                rgba(201,162,39,.18);
+
+            border-radius: 50%;
+        }
+
+        .product-image::after {
+            content: "";
+
+            position: absolute;
+
+            width: 120px;
+            height: 120px;
+
+            border:
+                1px dashed
+                rgba(201,162,39,.15);
+
+            border-radius: 50%;
+        }
+
+        .product-icon {
+            position: relative;
+            z-index: 2;
+
+            font-size: 70px;
+            color: var(--gold-light);
+
+            filter:
+                drop-shadow(
+                    0 12px 30px
+                    rgba(201,162,39,.18)
+                );
+        }
+
+        .product-size {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            z-index: 4;
+
+            padding: 7px 12px;
+
+            border-radius: 999px;
+
+            border:
+                1px solid
+                rgba(201,162,39,.35);
+
+            background:
+                rgba(7,7,7,.75);
+
+            color: var(--gold-light);
+
+            font-size: 11px;
+            font-weight: 800;
+        }
+
+        .product-body {
+            padding: 25px;
+        }
+
+        .product-category {
+            color: var(--gold);
+            font-size: 11px;
+            font-weight: 800;
+            margin-bottom: 7px;
+        }
+
+        .product-name {
+            font-family: "Playfair Display", serif;
+            font-size: 25px;
+            color: #fff;
+            margin-bottom: 12px;
+        }
+
+        .product-description {
+            min-height: 75px;
+
+            color: #8f8a7d;
+            font-size: 13px;
+            line-height: 1.9;
+        }
+
+        .product-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+
+            margin-top: 20px;
+            padding-top: 18px;
+
+            border-top:
+                1px solid
+                rgba(255,255,255,.06);
+        }
+
+        .request-label {
+            color: #777267;
+            font-size: 11px;
+        }
+
+        .request-label strong {
+            display: block;
+            color: var(--gold-light);
+            font-size: 12px;
+            margin-top: 2px;
+        }
+
+        .product-order {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+
+            padding: 10px 15px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--gold-light),
+                    var(--gold)
+                );
+
+            color: #080808;
+
+            border-radius: 999px;
+
+            font-size: 12px;
+            font-weight: 900;
+
+            transition: .25s ease;
+        }
+
+        .product-order:hover {
+            transform: scale(1.04);
+            box-shadow:
+                0 10px 25px
+                rgba(201,162,39,.18);
+        }
+
+
+        /* =========================================================
+           SIZE SHOWCASE
+        ========================================================= */
+
+        .sizes-section {
+            padding: 0 0 110px;
+            background: #080808;
+        }
+
+        .sizes-box {
+            padding: 35px;
+
+            border:
+                1px solid
+                rgba(201,162,39,.18);
+
+            border-radius: var(--radius);
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(201,162,39,.07),
+                    rgba(255,255,255,.015)
+                );
+
+            text-align: center;
+        }
+
+        .sizes-title {
+            font-family: "Playfair Display", serif;
+            font-size: 30px;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        .sizes {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .size-pill {
+            min-width: 110px;
+            padding: 13px 22px;
+
+            border:
+                1px solid
+                rgba(201,162,39,.30);
+
+            border-radius: 999px;
+
+            background: #0d0d0d;
+
+            color: var(--gold-light);
+
+            font-weight: 800;
+            font-size: 14px;
+        }
+
+
+        /* =========================================================
+           ORDER STEPS
+        ========================================================= */
+
+        .how {
+            background: #0a0a0a;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .step {
+            position: relative;
+
+            padding: 32px 27px;
+
+            border:
+                1px solid
+                rgba(255,255,255,.06);
+
+            border-radius: var(--radius);
+
+            background:
+                rgba(255,255,255,.018);
+        }
+
+        .step-number {
+            width: 45px;
+            height: 45px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 50%;
+
+            border:
+                1px solid
+                rgba(201,162,39,.35);
+
+            color: var(--gold-light);
+
+            font-weight: 900;
+
+            margin-bottom: 22px;
+        }
+
+        .step i {
+            position: absolute;
+            left: 27px;
+            top: 30px;
+
+            color:
+                rgba(201,162,39,.22);
+
+            font-size: 28px;
+        }
+
+        .step h3 {
+            font-size: 20px;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .step p {
+            color: #888275;
+            font-size: 13px;
+        }
+
+
+        /* =========================================================
+           CONTACT CTA
+        ========================================================= */
+
+        .contact {
+            padding: 110px 0;
+
+            position: relative;
+            overflow: hidden;
+
+            background:
+                radial-gradient(
+                    circle at center,
+                    rgba(201,162,39,.12),
+                    transparent 48%
+                ),
+                #070707;
+        }
+
+        .contact-box {
+            position: relative;
+
+            padding: 65px 40px;
+
+            text-align: center;
+
+            border:
+                1px solid
+                rgba(201,162,39,.25);
+
+            border-radius: 30px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(201,162,39,.08),
+                    rgba(255,255,255,.015)
+                );
+
+            box-shadow:
+                0 30px 80px
+                rgba(0,0,0,.4);
+        }
+
+        .contact-icon {
+            width: 70px;
+            height: 70px;
+
+            margin: 0 auto 22px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 50%;
+
+            color: var(--gold-light);
+
+            border:
+                1px solid
+                rgba(201,162,39,.3);
+
+            font-size: 27px;
+        }
+
+        .contact h2 {
+            font-family: "Playfair Display", serif;
+            font-size: clamp(35px, 5vw, 58px);
+            color: #fff;
+            margin-bottom: 12px;
+        }
+
+        .contact h2 span {
+            color: var(--gold-light);
+        }
+
+        .contact p {
+            color: #999286;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            font-size: 15px;
+        }
+
+        .phone {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+
+            margin-bottom: 25px;
+
+            color: var(--gold-light);
+
+            font-size: clamp(22px, 4vw, 34px);
+            font-weight: 800;
+
+            direction: ltr;
+        }
+
+        .contact-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .whatsapp-btn {
+            background:
+                linear-gradient(
+                    135deg,
+                    #36e277,
+                    #1db954
+                );
+
+            color: #041b0b;
+
+            box-shadow:
+                0 15px 35px
+                rgba(37,211,102,.12);
+        }
+
+        .call-btn {
+            border:
+                1px solid
+                rgba(201,162,39,.35);
+
+            color: var(--gold-light);
+        }
+
+
+        /* =========================================================
+           FOOTER
+        ========================================================= */
+
+        footer {
+            padding: 45px 0 25px;
+
+            border-top:
+                1px solid
+                rgba(255,255,255,.06);
+
+            background: #050505;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 30px;
+            align-items: start;
+        }
+
+        .footer-brand {
+            font-family: "Playfair Display", serif;
+            color: var(--gold-light);
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .footer-description {
+            color: #777267;
+            font-size: 12px;
+            max-width: 350px;
+        }
+
+        .footer-title {
+            color: #e8e1d0;
+            font-size: 14px;
+            font-weight: 800;
+            margin-bottom: 14px;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+
+        .footer-links a {
+            color: #777267;
+            font-size: 12px;
+            transition: .2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--gold-light);
+        }
+
+        .footer-contact {
+            color: #777267;
+            font-size: 12px;
+            line-height: 2;
+        }
+
+        .footer-contact strong {
+            color: var(--gold-light);
+            direction: ltr;
+            display: inline-block;
+        }
+
+        .copyright {
+            margin-top: 35px;
+            padding-top: 20px;
+
+            border-top:
+                1px solid
+                rgba(255,255,255,.05);
+
+            text-align: center;
+
+            color: #555149;
+            font-size: 11px;
+        }
+
+
+        /* =========================================================
+           FLOATING WHATSAPP
+        ========================================================= */
+
+        .floating-whatsapp {
+            position: fixed;
+
+            right: 22px;
+            bottom: 22px;
+
+            z-index: 900;
+
+            width: 58px;
+            height: 58px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 50%;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #39e77b,
+                    #1db954
+                );
+
+            color: white;
+
+            font-size: 27px;
+
+            box-shadow:
+                0 12px 35px
+                rgba(37,211,102,.28);
+
+            transition: .25s ease;
+        }
+
+        .floating-whatsapp:hover {
+            transform: translateY(-4px) scale(1.05);
+        }
+
+        .whatsapp-pulse {
+            position: absolute;
+            inset: -6px;
+
+            border:
+                1px solid
+                rgba(37,211,102,.35);
+
+            border-radius: 50%;
+
+            animation:
+                pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(.9);
+                opacity: .8;
+            }
+
+            70% {
+                transform: scale(1.18);
+                opacity: 0;
+            }
+
+            100% {
+                transform: scale(1.18);
+                opacity: 0;
+            }
+        }
+
+
+        /* =========================================================
+           BACK TO TOP
+        ========================================================= */
+
+        .back-top {
+            position: fixed;
+
+            left: 22px;
+            bottom: 22px;
+
+            z-index: 900;
+
+            width: 45px;
+            height: 45px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 50%;
+
+            border:
+                1px solid
+                rgba(201,162,39,.25);
+
+            background:
+                rgba(10,10,10,.85);
+
+            color: var(--gold-light);
+
+            cursor: pointer;
+
+            opacity: 0;
+            visibility: hidden;
+
+            transform: translateY(15px);
+
+            transition: .3s ease;
+        }
+
+        .back-top.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+
+        /* =========================================================
+           REVEAL ANIMATION
+        ========================================================= */
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition:
+                opacity .7s ease,
+                transform .7s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+
+        /* =========================================================
+           RESPONSIVE
+        ========================================================= */
+
+        @media (max-width: 1000px) {
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-copy {
+                margin: auto;
+            }
+
+            .hero-description {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-actions {
+                justify-content: center;
+            }
+
+            .hero-visual {
+                min-height: 420px;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-card {
+                min-height: 330px;
+            }
+
+            .about-copy .section-title {
+                text-align: center;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+
+        @media (max-width: 760px) {
+
+            .container {
+                width: min(100% - 28px, 600px);
+            }
+
+            .navbar {
+                height: 72px;
+            }
+
+            .navbar.scrolled {
+                height: 68px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .menu-btn {
+                display: block;
+            }
+
+            .mobile-menu {
+                inset: 72px 0 0;
+            }
+
+            .hero {
+                padding-top: 72px;
+            }
+
+            .hero-content {
+                gap: 15px;
+            }
+
+            .hero h1 {
+                font-size: clamp(50px, 17vw, 80px);
+                letter-spacing: -1px;
+            }
+
+            .hero-description {
+                font-size: 15px;
+            }
+
+            .hero-visual {
+                min-height: 350px;
+            }
+
+            .hero-emblem {
+                width: min(320px, 75vw);
+            }
+
+            .emblem-name {
+                font-size: 42px;
+            }
+
+            .emblem-icon {
+                font-size: 55px;
+            }
+
+            .floating-one {
+                top: 15px;
+                right: 2px;
+            }
+
+            .floating-two {
+                bottom: 25px;
+                left: 2px;
+            }
+
+            .section {
+                padding: 80px 0;
+            }
+
+            .section-title {
+                font-size: 38px;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .product-image {
+                height: 240px;
+            }
+
+            .steps {
+                grid-template-columns: 1fr;
+            }
+
+            .about-points {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .footer-description {
+                margin: auto;
+            }
+
+            .footer-links {
+                align-items: center;
+            }
+
+            .contact-box {
+                padding: 50px 20px;
+            }
+
+            .phone {
+                font-size: 21px;
+            }
+
+            .floating-whatsapp {
+                right: 15px;
+                bottom: 15px;
+                width: 54px;
+                height: 54px;
+            }
+
+            .back-top {
+                left: 15px;
+                bottom: 15px;
+                width: 43px;
+                height: 43px;
+            }
+        }
+
+
+        @media (max-width: 430px) {
+
+            .hero-actions,
+            .contact-buttons {
+                flex-direction: column;
+            }
+
+            .hero-actions .btn,
+            .contact-buttons .btn {
+                width: 100%;
+            }
+
+            .hero-label {
+                font-size: 11px;
+            }
+
+            .hero h1 {
+                font-size: 48px;
+            }
+
+            .product-body {
+                padding: 21px;
+            }
+
+            .product-footer {
+                align-items: stretch;
+                flex-direction: column;
+            }
+
+            .product-order {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .size-pill {
+                flex: 1;
+            }
+        }
+
     </style>
 </head>
-<body class="custom-scrollbar min-h-screen flex flex-col justify-between selection:bg-sudan-accent selection:text-black">
 
-    <!-- Navigation Header -->
-    <header class="sticky top-0 z-50 glass-panel border-b border-sudan-700/40 shadow-xl">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-20">
-                
-                <!-- Brand Logo & Title -->
-                <div class="flex items-center space-x-3 space-x-reverse cursor-pointer" onclick="switchView('store')">
-                    <div class="w-12 h-12 rounded-xl gold-bg-gradient p-0.5 flex items-center justify-center shadow-lg shadow-sudan-accent/20">
-                        <div class="w-full h-full bg-sudan-900 rounded-[10px] flex items-center justify-center">
-                            <span class="text-2xl font-black gold-gradient-text">ز</span>
-                        </div>
-                    </div>
-                    <div>
-                        <h1 class="text-2xl font-black tracking-wide text-white">الـزبـيــدي</h1>
-                        <p class="text-[10px] text-sudan-accent tracking-widest font-semibold uppercase">للمنتجات السودانية الأصيلة</p>
-                    </div>
-                </div>
 
-                <!-- Navigation Links (Desktop) -->
-                <nav class="hidden lg:flex items-center space-x-7 space-x-reverse font-semibold text-sm">
-                    <button onclick="switchView('store')" id="nav-store" class="text-sudan-accent hover:text-white transition py-2">الرئيسية</button>
-                    <button onclick="scrollToCategory('all')" class="text-gray-300 hover:text-sudan-accent transition py-2">كل المنتجات</button>
-                    <button onclick="scrollToCategory('food')" class="text-gray-300 hover:text-sudan-accent transition py-2">المؤن والمأكولات</button>
-                    <button onclick="scrollToCategory('perfumes')" class="text-gray-300 hover:text-sudan-accent transition py-2">العطور والبخور</button>
-                    <button onclick="scrollToCategory('beauty')" class="text-gray-300 hover:text-sudan-accent transition py-2">التجميل والعناية</button>
-                    <button onclick="scrollToSection('about')" class="text-gray-300 hover:text-sudan-accent transition py-2">عن الزبيدي</button>
-                    <button onclick="scrollToSection('contact')" class="text-gray-300 hover:text-sudan-accent transition py-2">تواصل معنا</button>
-                </nav>
+<body>
 
-                <!-- Actions: Admin Button & Cart Icon -->
-                <div class="flex items-center space-x-3 space-x-reverse">
-                    <button onclick="switchView('dashboard')" id="nav-dashboard" class="hidden sm:flex items-center gap-2 px-3.5 py-2 rounded-xl bg-sudan-900/90 hover:bg-sudan-800 text-sudan-accent border border-sudan-accent/30 text-xs font-bold transition">
-                        <i class="fa-solid fa-chart-line text-sm"></i>
-                        <span>الإدارة</span>
-                    </button>
 
-                    <!-- Cart Button -->
-                    <button onclick="toggleCartModal()" class="relative p-3 rounded-xl bg-sudan-900 border border-sudan-700/60 text-gray-200 hover:text-sudan-accent hover:bg-sudan-800 transition">
-                        <i class="fa-solid fa-bag-shopping text-xl"></i>
-                        <span id="cart-count" class="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full gold-bg-gradient text-sudan-900 font-extrabold text-xs flex items-center justify-center">0</span>
-                    </button>
+<!-- =========================================================
+     NAVBAR
+========================================================= -->
 
-                    <!-- Mobile Toggle Menu Button -->
-                    <button onclick="toggleMobileMenu()" class="lg:hidden p-3 rounded-xl bg-sudan-900 text-gray-200 hover:text-white">
-                        <i class="fa-solid fa-bars text-xl"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
+<header class="navbar" id="navbar">
 
-        <!-- Mobile Navigation Drawer -->
-        <div id="mobile-menu" class="hidden lg:hidden glass-panel border-t border-sudan-800 px-5 pt-3 pb-5 space-y-3">
-            <button onclick="switchView('store'); toggleMobileMenu()" class="block w-full text-right py-2 text-sudan-accent font-bold">الرئيسية</button>
-            <button onclick="scrollToCategory('food'); toggleMobileMenu()" class="block w-full text-right py-2 text-gray-300 hover:text-white">المؤن والمأكولات السودانية</button>
-            <button onclick="scrollToCategory('perfumes'); toggleMobileMenu()" class="block w-full text-right py-2 text-gray-300 hover:text-white">العطور والبخور السوداني</button>
-            <button onclick="scrollToCategory('beauty'); toggleMobileMenu()" class="block w-full text-right py-2 text-gray-300 hover:text-white">منتجات التجميل والدلكة</button>
-            <button onclick="scrollToSection('about'); toggleMobileMenu()" class="block w-full text-right py-2 text-gray-300 hover:text-white">عن علامة الزبيدي</button>
-            <button onclick="scrollToSection('contact'); toggleMobileMenu()" class="block w-full text-right py-2 text-gray-300 hover:text-white">تواصل معنا</button>
-            <button onclick="switchView('dashboard'); toggleMobileMenu()" class="w-full text-center py-3 rounded-xl gold-bg-gradient text-sudan-900 font-bold flex items-center justify-center gap-2">
-                <i class="fa-solid fa-chart-line"></i>
-                <span>لوحة التحكم والإدارة</span>
-            </button>
-        </div>
-    </header>
+    <div class="container nav-inner">
 
-    <main class="flex-grow relative">
-        <div class="absolute inset-0 sudan-pattern pointer-events-none"></div>
+        <a href="#home" class="brand">
 
-        <!-- ================= STORE VIEW ================= -->
-        <div id="store-view" class="transition-opacity duration-300">
-            
-            <!-- Hero Banner Section -->
-            <section class="relative py-16 sm:py-24 overflow-hidden border-b border-sudan-800/80">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                        <div class="text-right space-y-6">
-                            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sudan-accent/10 border border-sudan-accent/30 text-sudan-accent text-xs font-bold">
-                                <i class="fa-solid fa-gem text-xs"></i>
-                                <span>أصالة خيرات ونكهات السودان بين يديك</span>
-                            </div>
-                            <h1 class="text-4xl sm:text-6xl font-black text-white leading-tight">
-                                الزبيدي للمنتجات <br>
-                                <span class="gold-gradient-text">السودانية الأصيلة</span>
-                            </h1>
-                            <p class="text-gray-300 text-base sm:text-lg max-w-xl leading-relaxed">
-                                نجمع لك أجود المحاصيل السودانية، العطور والبخور التقليدي الفاخر، ومنتجات التجميل والعناية المصنوعة بكل حب وأصالة بأعلى معايير النقاء والجودة.
-                            </p>
-                            
-                            <!-- Search Input Field -->
-                            <div class="relative max-w-md pt-2">
-                                <i class="fa-solid fa-magnifying-glass absolute right-4 top-6 text-sudan-accent"></i>
-                                <input type="text" id="live-search-input" onkeyup="handleLiveSearch()" placeholder="ابحث عن: التبلدي، الدلكة، بخور الشاف، الصمغ..." class="w-full bg-sudan-900/90 border border-sudan-accent/40 rounded-2xl pr-11 pl-4 py-3.5 text-white text-sm focus:outline-none focus:border-sudan-accent placeholder-gray-400 shadow-lg">
-                            </div>
-
-                            <div class="flex flex-wrap gap-4 pt-2">
-                                <button onclick="scrollToCategory('all')" class="px-8 py-3.5 rounded-xl gold-bg-gradient text-sudan-900 font-extrabold hover:shadow-lg hover:shadow-sudan-accent/20 transition transform hover:-translate-y-0.5">
-                                    تصفح الكتالوج الشامل
-                                </button>
-                                <button onclick="scrollToSection('contact')" class="px-8 py-3.5 rounded-xl bg-sudan-900 hover:bg-sudan-800 text-white font-bold border border-sudan-700 transition">
-                                    اطلب عبر الواتساب Direct
-                                </button>
-                            </div>
-                        </div>
-
-                        <!-- Hero Feature Card -->
-                        <div class="relative flex justify-center">
-                            <div class="w-72 h-72 sm:w-96 sm:h-96 rounded-full gold-bg-gradient blur-3xl opacity-20 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
-                            <div class="relative glass-panel p-6 rounded-3xl border border-sudan-accent/30 shadow-2xl max-w-md w-full">
-                                <img src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=800&q=80" alt="Sudanese Traditional Items" class="rounded-2xl object-cover h-80 w-full shadow-inner">
-                                <div class="absolute -bottom-5 -right-5 bg-sudan-950 border border-sudan-accent/40 p-4 rounded-2xl shadow-xl flex items-center gap-4">
-                                    <div class="w-12 h-12 rounded-xl gold-bg-gradient flex items-center justify-center text-sudan-900 font-bold text-xl">
-                                        <i class="fa-solid fa-award"></i>
-                                    </div>
-                                    <div>
-                                        <p class="text-xs text-gray-400">منتجات طازجة وأصلية 100%</p>
-                                        <p class="text-sm font-bold text-white">ضمان علامة الزبيدي الفاخرة</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Products Showcase Section -->
-            <section id="products-section" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
-                    <div>
-                        <h2 class="text-3xl font-extrabold text-white flex items-center gap-3">
-                            <span class="w-3 h-8 gold-bg-gradient rounded-full"></span>
-                            المتجر السوداني المتكامل
-                        </h2>
-                        <p class="text-gray-400 text-sm mt-1">منتجات طبيعية ومصنوعات سودانية رفيعة المستوى</p>
-                    </div>
-
-                    <!-- Category Filter Tabs -->
-                    <div class="flex flex-wrap gap-2 bg-sudan-900/90 p-1.5 rounded-2xl border border-sudan-800" id="category-filters">
-                        <button onclick="filterCategory('all', event)" class="cat-filter-btn active px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold gold-bg-gradient text-sudan-900 transition">الكل</button>
-                        <button onclick="filterCategory('food', event)" class="cat-filter-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold text-gray-300 hover:text-white transition">المؤن والمأكولات</button>
-                        <button onclick="filterCategory('perfumes', event)" class="cat-filter-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold text-gray-300 hover:text-white transition">العطور والبخور</button>
-                        <button onclick="filterCategory('beauty', event)" class="cat-filter-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold text-gray-300 hover:text-white transition">التجميل والعناية</button>
-                    </div>
-                </div>
-
-                <!-- Dynamic Products Grid Container -->
-                <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                    <!-- Products will be injected via JS -->
-                </div>
-            </section>
-
-            <!-- About Al-Zubaidi Brand Section -->
-            <section id="about" class="py-20 bg-sudan-950 border-y border-sudan-800/80 relative">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                        <div class="space-y-6">
-                            <span class="text-sudan-accent font-bold text-sm tracking-widest uppercase">عن الزبيدي للمنتجات السودانية</span>
-                            <h2 class="text-3xl sm:text-4xl font-extrabold text-white leading-tight">
-                                ننقل لك أصالة التراث السوداني ونكهاته الاستثنائية
-                            </h2>
-                            <p class="text-gray-300 text-sm sm:text-base leading-relaxed">
-                                تأسست علامة **الزبيدي** لتقديم أفضل ما تجود به الأرض السودانية المعطاءة. نضمن الحصول على المنتجات من مصادرها الأصلية المباشرة من مزارع ومشاغل السودان (من الكركديه والأصماغ الطبيعية إلى أندر أنواع بخور الشاف والصندل والدلكة السودانية التقليدية).
-                            </p>
-                            <div class="grid grid-cols-2 gap-4 pt-2">
-                                <div class="glass-panel p-4 rounded-xl border border-sudan-800">
-                                    <h4 class="text-2xl font-black text-sudan-accent mb-1">100%</h4>
-                                    <p class="text-xs text-gray-300">منتجات طبيعية وأصلية</p>
-                                </div>
-                                <div class="glass-panel p-4 rounded-xl border border-sudan-800">
-                                    <h4 class="text-2xl font-black text-sudan-accent mb-1">توصيل VIP</h4>
-                                    <p class="text-xs text-gray-300">تغليف آمن وسريع لجميع المدن</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="glass-panel p-8 rounded-3xl border border-sudan-accent/20">
-                            <div class="space-y-4">
-                                <div class="flex items-start gap-4">
-                                    <div class="w-10 h-10 rounded-lg gold-bg-gradient flex items-center justify-center text-sudan-900 font-bold shrink-0 mt-1">
-                                        <i class="fa-solid fa-leaf"></i>
-                                    </div>
-                                    <div>
-                                        <h3 class="text-white font-bold text-base">جودة ونقاء بدون إضافات</h3>
-                                        <p class="text-xs text-gray-400 mt-1">نحرص على انتقاء الصمغ العربي، التبلدي، والكركديه المجفف بعناية فائقة لضمان أعلى فائدة ونكهة غنية.</p>
-                                    </div>
-                                </div>
-                                <div class="flex items-start gap-4">
-                                    <div class="w-10 h-10 rounded-lg gold-bg-gradient flex items-center justify-center text-sudan-900 font-bold shrink-0 mt-1">
-                                        <i class="fa-solid fa-mortar-pestle"></i>
-                                    </div>
-                                    <div>
-                                        <h3 class="text-white font-bold text-base">عطور ودلكة على الأصول</h3>
-                                        <p class="text-xs text-gray-400 mt-1">تحضير الخمرة والبخور السوداني والدلكة بأساليب متوارثة تحفظ القيمة والأصالة والرائحة الثابتة.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Contact & Ordering Section -->
-            <section id="contact" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                    <div class="space-y-6">
-                        <div>
-                            <span class="text-sudan-accent font-bold text-sm">التواصل والطلبات المباشرة</span>
-                            <h2 class="text-3xl font-extrabold text-white mt-1">نحن هنا لخدمتكم وتلبية طلباتكم</h2>
-                            <p class="text-gray-400 text-sm mt-2">تواصل مع فريق الزبيدي للطلبات الخاصة، التوريد بالجملة، أو الاستفسار عن توفر المنتجات السودانية.</p>
-                        </div>
-
-                        <div class="space-y-4">
-                            <div class="flex items-center gap-4 glass-panel p-4 rounded-2xl">
-                                <div class="w-12 h-12 rounded-xl gold-bg-gradient flex items-center justify-center text-sudan-900 text-xl font-bold">
-                                    <i class="fa-brands fa-whatsapp"></i>
-                                </div>
-                                <div>
-                                    <h4 class="text-xs text-gray-400">الطلب المباشر عبر الواتساب</h4>
-                                    <p class="text-white font-semibold text-sm" dir="ltr">+249 91 234 5678 / +966 50 123 4567</p>
-                                </div>
-                            </div>
-
-                            <div class="flex items-center gap-4 glass-panel p-4 rounded-2xl">
-                                <div class="w-12 h-12 rounded-xl gold-bg-gradient flex items-center justify-center text-sudan-900 text-xl font-bold">
-                                    <i class="fa-solid fa-envelope"></i>
-                                </div>
-                                <div>
-                                    <h4 class="text-xs text-gray-400">البريد الإلكتروني الرسمي</h4>
-                                    <p class="text-white font-semibold text-sm">orders@alzubaidi-sudan.com</p>
-                                </div>
-                            </div>
-
-                            <div class="flex items-center gap-4 glass-panel p-4 rounded-2xl">
-                                <div class="w-12 h-12 rounded-xl gold-bg-gradient flex items-center justify-center text-sudan-900 text-xl font-bold">
-                                    <i class="fa-solid fa-location-dot"></i>
-                                </div>
-                                <div>
-                                    <h4 class="text-xs text-gray-400">المقر الرئيسي ومنافذ التوزيع</h4>
-                                    <p class="text-white font-semibold text-sm">السودان / الخرطوم &amp; فروع التوزيع بالمملكة والإمارات</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Direct Message Form -->
-                    <div class="glass-panel p-8 rounded-3xl border border-sudan-800">
-                        <h3 class="text-xl font-bold text-white mb-6 flex items-center gap-2">
-                            <i class="fa-solid fa-paper-plane text-sudan-accent"></i>
-                            أرسل رسالة مباشرة لإدارة الزبيدي
-                        </h3>
-                        <form onsubmit="handleContactSubmit(event)" class="space-y-4">
-                            <div>
-                                <label class="block text-xs font-semibold text-gray-400 mb-1">الاسم الكريم</label>
-                                <input type="text" required placeholder="أدخل اسمك" class="w-full bg-sudan-950 border border-sudan-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-sudan-accent text-sm">
-                            </div>
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                <div>
-                                    <label class="block text-xs font-semibold text-gray-400 mb-1">رقم الهاتف / الواتساب</label>
-                                    <input type="tel" required placeholder="00xxxxxxxx" class="w-full bg-sudan-950 border border-sudan-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-sudan-accent text-sm">
-                                </div>
-                                <div>
-                                    <label class="block text-xs font-semibold text-gray-400 mb-1">نوع الطلب</label>
-                                    <select class="w-full bg-sudan-950 border border-sudan-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-sudan-accent text-sm">
-                                        <option>طلب منتجات قطاعي</option>
-                                        <option>طلب كميات وجملة</option>
-                                        <option>استفسار عن الشحن والتوصيل</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div>
-                                <label class="block text-xs font-semibold text-gray-400 mb-1">تفاصيل الرسالة</label>
-                                <textarea rows="3" required placeholder="اكتب المنتجات المطلوبة أو أي استفسارات..." class="w-full bg-sudan-950 border border-sudan-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-sudan-accent text-sm"></textarea>
-                            </div>
-                            <button type="submit" class="w-full py-3.5 rounded-xl gold-bg-gradient text-sudan-900 font-extrabold hover:shadow-lg transition">
-                                إرسال الرسالة الآن
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </section>
-        </div>
-
-        <!-- ================= DASHBOARD / ADMIN VIEW ================= -->
-        <div id="dashboard-view" class="hidden transition-opacity duration-300 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-            <div class="flex flex-col md:flex-row md:items-center justify-between pb-8 border-b border-sudan-800 mb-8 gap-4">
-                <div>
-                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold mb-2">
-                        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                        نظام إدارة منتجات الزبيدي نشط
-                    </div>
-                    <h2 class="text-3xl font-black text-white">لوحة التحكم والإدارة</h2>
-                    <p class="text-gray-400 text-sm">متابعة المنتجات، إضافة صنف جديد، واستعراض حركة المبيعات</p>
-                </div>
-                <div class="flex items-center gap-3">
-                    <button onclick="openAddProductModal()" class="px-5 py-2.5 rounded-xl gold-bg-gradient text-sudan-900 font-extrabold text-sm flex items-center gap-2 shadow-lg transition">
-                        <i class="fa-solid fa-plus"></i>
-                        <span>إضافة منتج سوداني جديد</span>
-                    </button>
-                    <button onclick="switchView('store')" class="px-5 py-2.5 rounded-xl bg-sudan-900 text-white font-bold text-sm border border-sudan-700 hover:bg-sudan-800 transition">
-                        العودة للمتجر
-                    </button>
-                </div>
+            <div class="brand-mark">
+                <i class="fa-solid fa-leaf"></i>
             </div>
 
-            <!-- Stats Cards -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-                <div class="glass-panel p-6 rounded-2xl border border-sudan-800">
-                    <div class="flex items-center justify-between">
-                        <div>
-                            <p class="text-xs text-gray-400">إجمالي المبيعات المقدرة</p>
-                            <h3 class="text-2xl font-black text-white mt-1">45,800 <span class="text-xs text-sudan-accent">ر.س / $</span></h3>
-                        </div>
-                        <div class="w-12 h-12 rounded-xl bg-sudan-accent/10 border border-sudan-accent/30 flex items-center justify-center text-sudan-accent text-xl">
-                            <i class="fa-solid fa-coins"></i>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="glass-panel p-6 rounded-2xl border border-sudan-800">
-                    <div class="flex items-center justify-between">
-                        <div>
-                            <p class="text-xs text-gray-400">عدد المنتجات بالكتالوج</p>
-                            <h3 id="dash-total-products" class="text-2xl font-black text-white mt-1">0</h3>
-                        </div>
-                        <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 text-xl">
-                            <i class="fa-solid fa-boxes-stacked"></i>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="glass-panel p-6 rounded-2xl border border-sudan-800">
-                    <div class="flex items-center justify-between">
-                        <div>
-                            <p class="text-xs text-gray-400">طلبـات اليوم</p>
-                            <h3 class="text-2xl font-black text-white mt-1">34 <span class="text-xs text-gray-400">طلب</span></h3>
-                        </div>
-                        <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-xl">
-                            <i class="fa-solid fa-bag-shopping"></i>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="glass-panel p-6 rounded-2xl border border-sudan-800">
-                    <div class="flex items-center justify-between">
-                        <div>
-                            <p class="text-xs text-gray-400">نسبة رضا العملاء</p>
-                            <h3 class="text-2xl font-black text-white mt-1">99.2%</h3>
-                        </div>
-                        <div class="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-blue-400 text-xl">
-                            <i class="fa-solid fa-heart"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Dashboard Analytics & Table -->
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
-                <div class="lg:col-span-2 glass-panel p-6 rounded-2xl border border-sudan-800">
-                    <h3 class="text-lg font-bold text-white mb-4">إحصائيات مبيعات الأقسام السودانية</h3>
-                    <div class="h-64">
-                        <canvas id="salesChart"></canvas>
-                    </div>
-                </div>
-
-                <div class="glass-panel p-6 rounded-2xl border border-sudan-800">
-                    <h3 class="text-lg font-bold text-white mb-4">المنتجات الأكثـر طلباً</h3>
-                    <div class="space-y-4">
-                        <div class="flex items-center justify-between p-3 bg-sudan-950 rounded-xl border border-sudan-800">
-                            <div class="flex items-center gap-3">
-                                <span class="w-8 h-8 rounded-lg gold-bg-gradient text-sudan-900 font-bold flex items-center justify-center text-xs">1</span>
-                                <div>
-                                    <p class="text-sm font-bold text-white">الكركديه السوداني الملكي</p>
-                                    <p class="text-xs text-gray-400">المؤن والمأكولات</p>
-                                </div>
-                            </div>
-                            <span class="text-xs font-bold text-sudan-accent">240 كجم</span>
-                        </div>
-                        <div class="flex items-center justify-between p-3 bg-sudan-950 rounded-xl border border-sudan-800">
-                            <div class="flex items-center gap-3">
-                                <span class="w-8 h-8 rounded-lg gold-bg-gradient text-sudan-900 font-bold flex items-center justify-center text-xs">2</span>
-                                <div>
-                                    <p class="text-sm font-bold text-white">خمرة الصندل الفاخرة</p>
-                                    <p class="text-xs text-gray-400">العطور والبخور</p>
-                                </div>
-                            </div>
-                            <span class="text-xs font-bold text-sudan-accent">180 قارورة</span>
-                        </div>
-                        <div class="flex items-center justify-between p-3 bg-sudan-950 rounded-xl border border-sudan-800">
-                            <div class="flex items-center gap-3">
-                                <span class="w-8 h-8 rounded-lg gold-bg-gradient text-sudan-900 font-bold flex items-center justify-center text-xs">3</span>
-                                <div>
-                                    <p class="text-sm font-bold text-white">الدلكة السودانية الأصلية</p>
-                                    <p class="text-xs text-gray-400">التجميل والعناية</p>
-                                </div>
-                            </div>
-                            <span class="text-xs font-bold text-sudan-accent">150 عبوة</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Manage Table -->
-            <div class="glass-panel rounded-2xl border border-sudan-800 overflow-hidden">
-                <div class="p-6 border-b border-sudan-800 flex justify-between items-center">
-                    <h3 class="text-lg font-bold text-white">جدول إدارة المنتجات والمخزون</h3>
-                    <span class="text-xs text-gray-400">تحكم كامل بالإضافة والحذف</span>
-                </div>
-                <div class="overflow-x-auto">
-                    <table class="w-full text-right text-sm">
-                        <thead class="bg-sudan-950 text-gray-400 uppercase text-xs">
-                            <tr>
-                                <th class="px-6 py-4">المنتج</th>
-                                <th class="px-6 py-4">التصنيف</th>
-                                <th class="px-6 py-4">السعر</th>
-                                <th class="px-6 py-4">الوزن / الحجم</th>
-                                <th class="px-6 py-4">الإجراءات</th>
-                            </tr>
-                        </thead>
-                        <tbody id="dashboard-products-table" class="divide-y divide-sudan-800 text-gray-300">
-                            <!-- Rows Injected JS -->
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <!-- Shopping Cart Drawer Modal -->
-    <div id="cart-modal" class="fixed inset-0 z-50 hidden bg-black/75 backdrop-blur-md flex justify-end transition-opacity">
-        <div class="w-full max-w-md bg-sudan-950 h-full p-6 flex flex-col justify-between border-r border-sudan-800 shadow-2xl">
             <div>
-                <div class="flex justify-between items-center pb-4 border-b border-sudan-800">
-                    <h3 class="text-xl font-extrabold text-white flex items-center gap-2">
-                        <i class="fa-solid fa-basket-shopping text-sudan-accent"></i>
-                        سلة منتجات الزبيدي
-                    </h3>
-                    <button onclick="toggleCartModal()" class="text-gray-400 hover:text-white text-2xl">&times;</button>
-                </div>
-                <div id="cart-items-container" class="py-4 space-y-4 max-h-[60vh] overflow-y-auto custom-scrollbar">
-                    <!-- Cart items render here -->
-                </div>
+                <div class="brand-name">الزبيدي</div>
+                <span class="brand-sub">
+                    ALZUBIDI
+                </span>
             </div>
 
-            <div class="border-t border-sudan-800 pt-4 space-y-3">
-                <div class="flex justify-between text-gray-300 text-sm">
-                    <span>المجموع الفرعي:</span>
-                    <span id="cart-subtotal" class="font-bold text-white">0 ر.س</span>
-                </div>
-                <div class="flex justify-between text-gray-300 text-sm">
-                    <span>رسوم التغليف والتجهيز:</span>
-                    <span id="cart-tax" class="font-bold text-emerald-400">مجاناً</span>
-                </div>
-                <div class="flex justify-between text-lg text-white font-black border-t border-sudan-800 pt-3">
-                    <span>المبلغ الإجمالي:</span>
-                    <span id="cart-total" class="gold-gradient-text">0 ر.س</span>
-                </div>
-                
-                <button onclick="openCheckoutModal()" class="w-full py-3.5 rounded-xl gold-bg-gradient text-sudan-900 font-extrabold text-base hover:shadow-lg transition flex items-center justify-center gap-2">
-                    <i class="fa-brands fa-whatsapp text-lg"></i>
-                    <span>إتمام الطلب عبر الواتساب</span>
-                </button>
-            </div>
-        </div>
+        </a>
+
+
+        <nav class="nav-links">
+
+            <a href="#home">
+                الرئيسية
+            </a>
+
+            <a href="#about">
+                من نحن
+            </a>
+
+            <a href="#products">
+                منتجاتنا
+            </a>
+
+            <a href="#how">
+                طريقة الطلب
+            </a>
+
+            <a href="#contact" class="nav-order">
+                <i class="fa-brands fa-whatsapp"></i>
+                اطلب الآن
+            </a>
+
+        </nav>
+
+
+        <button
+            class="menu-btn"
+            id="menuBtn"
+            aria-label="فتح القائمة">
+
+            <i class="fa-solid fa-bars"></i>
+
+        </button>
+
     </div>
 
-    <!-- Checkout Modal with Receipt/Summary -->
-    <div id="checkout-modal" class="fixed inset-0 z-50 hidden bg-black/85 backdrop-blur-md flex items-center justify-center p-4">
-        <div class="glass-panel p-6 rounded-3xl max-w-md w-full border border-sudan-800 shadow-2xl">
-            <div class="flex justify-between items-center pb-3 border-b border-sudan-800">
-                <h3 class="text-xl font-black text-white flex items-center gap-2">
-                    <i class="fa-solid fa-file-invoice text-sudan-accent"></i>
-                    تأكيد الطلب واستخراج الفاتورة
+</header>
+
+
+<!-- =========================================================
+     MOBILE MENU
+========================================================= -->
+
+<div class="mobile-menu" id="mobileMenu">
+
+    <nav class="mobile-links">
+
+        <a href="#home">
+            <i class="fa-solid fa-house"></i>
+            الرئيسية
+        </a>
+
+        <a href="#about">
+            <i class="fa-solid fa-circle-info"></i>
+            من نحن
+        </a>
+
+        <a href="#products">
+            <i class="fa-solid fa-box-open"></i>
+            منتجاتنا
+        </a>
+
+        <a href="#how">
+            <i class="fa-solid fa-list-check"></i>
+            طريقة الطلب
+        </a>
+
+        <a href="#contact">
+            <i class="fa-brands fa-whatsapp"></i>
+            تواصل معنا
+        </a>
+
+    </nav>
+
+</div>
+
+
+<!-- =========================================================
+     HERO
+========================================================= -->
+
+<section class="hero" id="home">
+
+    <div class="hero-orbit"></div>
+
+    <div class="container hero-content">
+
+        <div class="hero-copy reveal">
+
+            <div class="hero-label">
+
+                <i class="fa-solid fa-star"></i>
+
+                منتجات سودانية أصيلة
+
+            </div>
+
+
+            <h1>
+
+                الزبيدي
+
+                <span>
+                    أصالة تُذاق
+                </span>
+
+            </h1>
+
+
+            <p class="hero-description">
+
+                نختار لكم من خيرات السودان منتجات أصيلة
+                بجودة نهتم بها، ونقدمها لكم حسب الطلب.
+                من زبدة الفول السوداني إلى السمن البلدي،
+                الجودة والذوق السوداني في كل طلب.
+
+            </p>
+
+
+            <div class="hero-actions">
+
+                <a
+                    href="#products"
+                    class="btn btn-gold">
+
+                    <i class="fa-solid fa-box-open"></i>
+
+                    اكتشف منتجاتنا
+
+                </a>
+
+
+                <a
+                    href="https://wa.me/249909888738?text=السلام%20عليكم%20الزبيدي،%20أرغب%20في%20الاستفسار%20عن%20المنتجات."
+                    target="_blank"
+                    rel="noopener"
+                    class="btn btn-outline">
+
+                    <i class="fa-brands fa-whatsapp"></i>
+
+                    تواصل معنا
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="hero-visual reveal">
+
+            <div class="hero-emblem">
+
+                <div class="emblem-content">
+
+                    <div class="emblem-icon">
+                        <i class="fa-solid fa-wheat-awn"></i>
+                    </div>
+
+                    <div class="emblem-name">
+                        الزبيدي
+                    </div>
+
+                    <div class="emblem-subtitle">
+                        SUDANESE PRODUCTS
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="floating-card floating-one">
+
+                <i class="fa-solid fa-seedling"></i>
+
+                من خيرات السودان
+
+            </div>
+
+
+            <div class="floating-card floating-two">
+
+                <i class="fa-solid fa-box"></i>
+
+                كل المنتجات بالطلب
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<div class="gold-line"></div>
+
+
+<!-- =========================================================
+     ABOUT
+========================================================= -->
+
+<section class="section about" id="about">
+
+    <div class="container">
+
+        <div class="about-grid">
+
+
+            <div class="about-card reveal">
+
+                <div class="about-logo">
+
+                    <div class="about-logo-icon">
+                        <i class="fa-solid fa-leaf"></i>
+                    </div>
+
+                    <div class="about-logo-name">
+                        الزبيدي
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="about-copy reveal">
+
+                <div class="eyebrow">
+                    عن الزبيدي
+                </div>
+
+                <h2 class="section-title">
+
+                    طعم السودان
+                    <span>بهوية أصيلة</span>
+
+                </h2>
+
+
+                <p>
+
+                    الزبيدي علامة تهتم بتقديم المنتجات السودانية
+                    الأصيلة بطريقة تجمع بين جودة المنتج وجمال
+                    التقديم والاهتمام بالتفاصيل.
+
+                </p>
+
+
+                <p>
+
+                    نعمل على توفير منتجاتنا حسب الطلب، بما يمنح
+                    العميل مرونة أكبر في اختيار الحجم والكمية
+                    المناسبة لاحتياجه.
+
+                </p>
+
+
+                <div class="about-points">
+
+                    <div class="about-point">
+
+                        <i class="fa-solid fa-award"></i>
+
+                        <strong>
+                            جودة نهتم بها
+                        </strong>
+
+                        <span>
+                            اختيار وتجهيز بعناية
+                        </span>
+
+                    </div>
+
+
+                    <div class="about-point">
+
+                        <i class="fa-solid fa-seedling"></i>
+
+                        <strong>
+                            منتجات سودانية
+                        </strong>
+
+                        <span>
+                            نكهة وهوية من السودان
+                        </span>
+
+                    </div>
+
+
+                    <div class="about-point">
+
+                        <i class="fa-solid fa-box-open"></i>
+
+                        <strong>
+                            حسب الطلب
+                        </strong>
+
+                        <span>
+                            تحدد الكمية والحجم المطلوب
+                        </span>
+
+                    </div>
+
+
+                    <div class="about-point">
+
+                        <i class="fa-solid fa-headset"></i>
+
+                        <strong>
+                            خدمة مباشرة
+                        </strong>
+
+                        <span>
+                            تواصل معنا قبل الطلب
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     PRODUCTS
+========================================================= -->
+
+<section class="section products" id="products">
+
+    <div class="container">
+
+
+        <div class="section-header reveal">
+
+            <div class="eyebrow">
+                منتجاتنا
+            </div>
+
+            <h2 class="section-title">
+
+                خيرات السودان
+                <span>بين يديك</span>
+
+            </h2>
+
+            <p class="section-description">
+
+                اختر المنتج والحجم المناسب، ثم تواصل معنا مباشرة.
+                لا توجد أسعار ثابتة على الموقع؛ جميع المنتجات
+                والتجهيزات <strong class="gold">بالطلب</strong>.
+
+            </p>
+
+        </div>
+
+
+        <div class="order-notice reveal">
+
+            <i class="fa-solid fa-circle-info"></i>
+
+            <div>
+
+                <strong>
+                    كل المنتجات بالطلب
+                </strong>
+
+                — تواصل معنا لتحديد الكمية والحجم المطلوب.
+
+            </div>
+
+        </div>
+
+
+        <div class="products-grid" id="productsGrid">
+
+            <!-- المنتجات يتم توليدها بواسطة JavaScript -->
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     SIZES
+========================================================= -->
+
+<section class="sizes-section">
+
+    <div class="container">
+
+        <div class="sizes-box reveal">
+
+            <h3 class="sizes-title">
+
+                أحجام زبدة الفول السوداني
+
+            </h3>
+
+
+            <div class="sizes">
+
+                <div class="size-pill">
+                    1 KG
+                </div>
+
+                <div class="size-pill">
+                    5 KG
+                </div>
+
+                <div class="size-pill">
+                    10 KG
+                </div>
+
+                <div class="size-pill">
+                    15 KG
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     HOW TO ORDER
+========================================================= -->
+
+<section class="section how" id="how">
+
+    <div class="container">
+
+        <div class="section-header reveal">
+
+            <div class="eyebrow">
+                طريقة الطلب
+            </div>
+
+            <h2 class="section-title">
+
+                ببساطة...
+                <span>نحن تحت خدماتكم</span>
+
+            </h2>
+
+            <p class="section-description">
+
+                لا تحتاج إلى إنشاء حساب أو استخدام سلة شراء.
+                تواصل معنا مباشرة وسنقوم بمتابعة طلبك.
+
+            </p>
+
+        </div>
+
+
+        <div class="steps">
+
+
+            <div class="step reveal">
+
+                <div class="step-number">
+                    01
+                </div>
+
+                <i class="fa-solid fa-box-open"></i>
+
+                <h3>
+                    اختر المنتج
                 </h3>
-                <button onclick="closeCheckoutModal()" class="text-gray-400 hover:text-white text-xl">&times;</button>
+
+                <p>
+                    اختر زبدة الفول السوداني أو السمن البلدي
+                    والحجم المناسب لاحتياجك.
+                </p>
+
             </div>
 
-            <form onsubmit="handleFinalCheckout(event)" class="space-y-4 mt-4">
-                <div>
-                    <label class="block text-xs font-semibold text-gray-400 mb-1">الاسم بالكامل</label>
-                    <input type="text" id="cust-name" required placeholder="أدخل اسمك لاستلام الشحنة" class="w-full bg-sudan-950 border border-sudan-800 rounded-xl p-3 text-white text-sm focus:border-sudan-accent outline-none">
-                </div>
-                <div>
-                    <label class="block text-xs font-semibold text-gray-400 mb-1">رقم الهاتف / الواتساب</label>
-                    <input type="tel" id="cust-phone" required placeholder="مثال: 00966500000000" class="w-full bg-sudan-950 border border-sudan-800 rounded-xl p-3 text-white text-sm focus:border-sudan-accent outline-none">
-                </div>
-                <div>
-                    <label class="block text-xs font-semibold text-gray-400 mb-1">عنوان التوصيل والمدينة</label>
-                    <input type="text" id="cust-address" required placeholder="المدينة، الحي، اسم الشارع" class="w-full bg-sudan-950 border border-sudan-800 rounded-xl p-3 text-white text-sm focus:border-sudan-accent outline-none">
-                </div>
-                <div>
-                    <label class="block text-xs font-semibold text-gray-400 mb-1">ملاحظات خاصة للطلب</label>
-                    <textarea id="cust-notes" rows="2" placeholder="أي تفاصيل إضافية للتحضير..." class="w-full bg-sudan-950 border border-sudan-800 rounded-xl p-3 text-white text-sm focus:border-sudan-accent outline-none"></textarea>
+
+            <div class="step reveal">
+
+                <div class="step-number">
+                    02
                 </div>
 
-                <div class="p-3 bg-sudan-950/80 rounded-xl border border-sudan-800 space-y-1 text-xs">
-                    <div class="flex justify-between text-gray-300">
-                        <span>إجمالي الأصناف:</span>
-                        <span id="checkout-summary-count" class="font-bold text-white">0</span>
-                    </div>
-                    <div class="flex justify-between text-gray-300">
-                        <span>المبلغ المستحق:</span>
-                        <span id="checkout-summary-total" class="font-bold text-sudan-accent">0 ر.س</span>
-                    </div>
-                </div>
+                <i class="fa-brands fa-whatsapp"></i>
 
-                <div class="flex gap-3 pt-2">
-                    <button type="submit" class="flex-1 py-3.5 rounded-xl gold-bg-gradient text-sudan-900 font-extrabold text-sm flex items-center justify-center gap-2">
-                        <i class="fa-brands fa-whatsapp text-base"></i>
-                        إرسال الطلب للواتساب
-                    </button>
-                    <button type="button" onclick="closeCheckoutModal()" class="px-5 py-3.5 rounded-xl bg-sudan-900 text-gray-300 font-bold text-sm">إلغاء</button>
-                </div>
-            </form>
-        </div>
-    </div>
+                <h3>
+                    تواصل معنا
+                </h3>
 
-    <!-- Add Product Modal (Admin) -->
-    <div id="add-product-modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
-        <div class="glass-panel p-6 rounded-3xl max-w-lg w-full border border-sudan-800 shadow-2xl">
-            <div class="flex justify-between items-center pb-3 border-b border-sudan-800">
-                <h3 class="text-xl font-bold text-white">إضافة منتج سوداني جديد</h3>
-                <button onclick="closeAddProductModal()" class="text-gray-400 hover:text-white text-xl">&times;</button>
+                <p>
+                    اضغط على زر الطلب وتواصل معنا مباشرة
+                    عبر واتساب لتأكيد التفاصيل.
+                </p>
+
             </div>
-            <form onsubmit="handleAddNewProduct(event)" class="space-y-4 mt-4">
-                <div>
-                    <label class="block text-xs text-gray-400 mb-1">اسم المنتج السوداني</label>
-                    <input type="text" id="new-prod-name" required placeholder="مثال: زيت سمسم نقي ممتاز" class="w-full bg-sudan-950 border border-sudan-800 rounded-xl p-3 text-white text-sm focus:border-sudan-accent outline-none">
+
+
+            <div class="step reveal">
+
+                <div class="step-number">
+                    03
                 </div>
-                <div class="grid grid-cols-3 gap-3">
-                    <div>
-                        <label class="block text-xs text-gray-400 mb-1">السعر (ر.س)</label>
-                        <input type="number" id="new-prod-price" required class="w-full bg-sudan-950 border border-sudan-800 rounded-xl p-3 text-white text-sm focus:border-sudan-accent outline-none">
-                    </div>
-                    <div>
-                        <label class="block text-xs text-gray-400 mb-1">العبوة / الوزن</label>
-                        <input type="text" id="new-prod-unit" required placeholder="500 جرام / 1 لتر" class="w-full bg-sudan-950 border border-sudan-800 rounded-xl p-3 text-white text-sm focus:border-sudan-accent outline-none">
-                    </div>
-                    <div>
-                        <label class="block text-xs text-gray-400 mb-1">التصنيف</label>
-                        <select id="new-prod-cat" class="w-full bg-sudan-950 border border-sudan-800 rounded-xl p-3 text-white text-sm focus:border-sudan-accent outline-none">
-                            <option value="food">المؤن والمأكولات</option>
-                            <option value="perfumes">العطور والبخور</option>
-                            <option value="beauty">التجميل والعناية</option>
-                        </select>
-                    </div>
-                </div>
-                <div>
-                    <label class="block text-xs text-gray-400 mb-1">رابط صورة المنتج (Unsplash Image URL)</label>
-                    <input type="url" id="new-prod-img" required placeholder="https://..." class="w-full bg-sudan-950 border border-sudan-800 rounded-xl p-3 text-white text-sm focus:border-sudan-accent outline-none">
-                </div>
-                <div>
-                    <label class="block text-xs text-gray-400 mb-1">وصف المنتج ومميزاته</label>
-                    <textarea id="new-prod-desc" rows="2" required placeholder="تفاصيل جودة المنتج ومصدره الأصلي..." class="w-full bg-sudan-950 border border-sudan-800 rounded-xl p-3 text-white text-sm focus:border-sudan-accent outline-none"></textarea>
-                </div>
-                <div class="flex gap-3 pt-2">
-                    <button type="submit" class="flex-1 py-3.5 rounded-xl gold-bg-gradient text-sudan-900 font-bold text-sm">حفظ ونشر المنتج بالكتالوج</button>
-                    <button type="button" onclick="closeAddProductModal()" class="px-5 py-3.5 rounded-xl bg-sudan-900 text-gray-300 font-bold text-sm">إلغاء</button>
-                </div>
-            </form>
+
+                <i class="fa-solid fa-check-circle"></i>
+
+                <h3>
+                    نجهز طلبك
+                </h3>
+
+                <p>
+                    بعد الاتفاق على الكمية والتفاصيل،
+                    نقوم بتجهيز طلبك حسب المتفق عليه.
+                </p>
+
+            </div>
+
         </div>
+
     </div>
 
-    <!-- Notification Toast Message -->
-    <div id="toast-msg" class="fixed bottom-5 left-5 z-50 hidden glass-panel border border-sudan-accent/60 px-6 py-4 rounded-2xl shadow-2xl flex items-center gap-3">
-        <i class="fa-solid fa-circle-check text-sudan-accent text-xl"></i>
-        <span id="toast-text" class="text-white text-sm font-bold"></span>
+</section>
+
+
+<!-- =========================================================
+     CONTACT
+========================================================= -->
+
+<section class="contact" id="contact">
+
+    <div class="container">
+
+        <div class="contact-box reveal">
+
+            <div class="contact-icon">
+
+                <i class="fa-brands fa-whatsapp"></i>
+
+            </div>
+
+
+            <h2>
+
+                نحن تحت
+                <span>خدماتكم</span>
+
+            </h2>
+
+
+            <p>
+
+                للاستفسار عن المنتجات أو الأحجام أو الكميات
+                أو لتقديم طلب، تواصل معنا مباشرة عبر واتساب
+                أو الاتصال.
+
+            </p>
+
+
+            <a
+                href="tel:+249909888738"
+                class="phone">
+
+                <i class="fa-solid fa-phone"></i>
+
+                +249 909 888 738
+
+            </a>
+
+
+            <div class="contact-buttons">
+
+                <a
+                    href="https://wa.me/249909888738?text=السلام%20عليكم%20الزبيدي،%20أرغب%20في%20طلب%20منتج."
+                    target="_blank"
+                    rel="noopener"
+                    class="btn whatsapp-btn">
+
+                    <i class="fa-brands fa-whatsapp"></i>
+
+                    اطلب عبر واتساب
+
+                </a>
+
+
+                <a
+                    href="tel:+249909888738"
+                    class="btn call-btn">
+
+                    <i class="fa-solid fa-phone"></i>
+
+                    اتصل بنا
+
+                </a>
+
+            </div>
+
+        </div>
+
     </div>
 
-    <!-- Footer -->
-    <footer class="bg-sudan-950 border-t border-sudan-800/80 py-12 mt-16 relative z-10">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8 text-right">
-                <div class="space-y-3">
-                    <div class="flex items-center space-x-2 space-x-reverse">
-                        <div class="w-8 h-8 rounded-lg gold-bg-gradient flex items-center justify-center text-sudan-900 font-black text-sm">ز</div>
-                        <span class="text-xl font-bold text-white">الزبيدي للمنتجات السودانية</span>
+</section>
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer>
+
+    <div class="container">
+
+        <div class="footer-grid">
+
+
+            <div>
+
+                <div class="footer-brand">
+                    الزبيدي
+                </div>
+
+                <p class="footer-description">
+
+                    منتجات سودانية أصيلة،
+                    تقدم بعناية وبحسب الطلب.
+
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <div class="footer-title">
+                    روابط سريعة
+                </div>
+
+                <div class="footer-links">
+
+                    <a href="#home">
+                        الرئيسية
+                    </a>
+
+                    <a href="#about">
+                        من نحن
+                    </a>
+
+                    <a href="#products">
+                        منتجاتنا
+                    </a>
+
+                    <a href="#how">
+                        طريقة الطلب
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div>
+
+                <div class="footer-title">
+                    تواصل معنا
+                </div>
+
+                <div class="footer-contact">
+
+                    <div>
+                        واتساب:
+                        <strong>
+                            +249 909 888 738
+                        </strong>
                     </div>
-                    <p class="text-gray-400 text-xs leading-relaxed">
-                        علامة تجارية رائدة متخصصة في توفير أجود المنتجات، المؤن، العطور والبخور والدلكة السودانية الأصلية ومباشرة من قلب السودان لكل أرجاء العالم.
+
+                    <div>
+                        جميع المنتجات بالطلب
+                    </div>
+
+                    <div>
+                        نحن تحت خدماتكم
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="copyright">
+
+            © <span id="year"></span>
+            الزبيدي — جميع الحقوق محفوظة
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+<!-- =========================================================
+     FLOATING WHATSAPP
+========================================================= -->
+
+<a
+    href="https://wa.me/249909888738?text=السلام%20عليكم%20الزبيدي،%20أرغب%20في%20الاستفسار%20عن%20المنتجات."
+    target="_blank"
+    rel="noopener"
+    class="floating-whatsapp"
+    aria-label="تواصل عبر واتساب">
+
+    <span class="whatsapp-pulse"></span>
+
+    <i class="fa-brands fa-whatsapp"></i>
+
+</a>
+
+
+<!-- =========================================================
+     BACK TO TOP
+========================================================= -->
+
+<button
+    class="back-top"
+    id="backTop"
+    aria-label="العودة للأعلى">
+
+    <i class="fa-solid fa-arrow-up"></i>
+
+</button>
+
+
+<script>
+
+    /* =========================================================
+       SETTINGS
+    ========================================================= */
+
+    const WHATSAPP_NUMBER = "249909888738";
+
+
+    /* =========================================================
+       PRODUCTS
+    ========================================================= */
+
+    const PRODUCTS = [
+
+        {
+            id: "peanut-1kg",
+            type: "peanut",
+            category: "زبدة الفول السوداني",
+            name: "زبدة الفول السوداني",
+            size: "1 KG",
+            description:
+                "زبدة فول سوداني من الزبيدي، متوفرة بعبوة 1 كيلو، والتجهيز حسب الطلب.",
+            badge: "1 KG"
+        },
+
+        {
+            id: "peanut-5kg",
+            type: "peanut",
+            category: "زبدة الفول السوداني",
+            name: "زبدة الفول السوداني",
+            size: "5 KG",
+            description:
+                "زبدة فول سوداني من الزبيدي، متوفرة بعبوة 5 كيلو، مناسبة للطلبات والكميات.",
+            badge: "5 KG"
+        },
+
+        {
+            id: "peanut-10kg",
+            type: "peanut",
+            category: "زبدة الفول السوداني",
+            name: "زبدة الفول السوداني",
+            size: "10 KG",
+            description:
+                "زبدة فول سوداني من الزبيدي، متوفرة بعبوة 10 كيلو للطلبات الكبيرة.",
+            badge: "10 KG"
+        },
+
+        {
+            id: "peanut-15kg",
+            type: "peanut",
+            category: "زبدة الفول السوداني",
+            name: "زبدة الفول السوداني",
+            size: "15 KG",
+            description:
+                "زبدة فول سوداني من الزبيدي، متوفرة بعبوة 15 كيلو للطلبات والكميات الكبيرة.",
+            badge: "15 KG"
+        },
+
+        {
+            id: "ghee-baladi",
+            type: "ghee",
+            category: "السمن البلدي",
+            name: "السمن البلدي",
+            size: "بالطلب",
+            description:
+                "سمن بلدي أصيل من الزبيدي، متوفر حسب الطلب والكمية المطلوبة.",
+            badge: "بالطلب"
+        }
+
+    ];
+
+
+    /* =========================================================
+       PRODUCT ICON
+    ========================================================= */
+
+    function getProductIcon(type) {
+
+        if (type === "peanut") {
+            return "fa-seedling";
+        }
+
+        if (type === "ghee") {
+            return "fa-jar";
+        }
+
+        return "fa-box-open";
+    }
+
+
+    /* =========================================================
+       WHATSAPP MESSAGE
+    ========================================================= */
+
+    function buildWhatsAppMessage(product) {
+
+        let message =
+            "السلام عليكم، أرغب في الطلب من الزبيدي.%0A%0A" +
+            "المنتج: " +
+            encodeURIComponent(product.name) +
+            "%0A";
+
+        if (product.size) {
+
+            message +=
+                "الحجم: " +
+                encodeURIComponent(product.size) +
+                "%0A";
+
+        }
+
+        message +=
+            "%0Aأرجو تزويدي بالتفاصيل وتأكيد الطلب.";
+
+        return message;
+    }
+
+
+    /* =========================================================
+       PRODUCT CARD
+    ========================================================= */
+
+    function createProductCard(product) {
+
+        const icon = getProductIcon(product.type);
+
+        const whatsappURL =
+            `https://wa.me/${WHATSAPP_NUMBER}?text=${buildWhatsAppMessage(product)}`;
+
+        return `
+
+            <article class="product-card reveal">
+
+                <div class="product-image">
+
+                    <div class="product-size">
+                        ${product.badge}
+                    </div>
+
+                    <div class="product-icon">
+
+                        <i class="fa-solid ${icon}"></i>
+
+                    </div>
+
+                </div>
+
+
+                <div class="product-body">
+
+                    <div class="product-category">
+                        ${product.category}
+                    </div>
+
+
+                    <h3 class="product-name">
+                        ${product.name}
+                    </h3>
+
+
+                    <p class="product-description">
+
+                        ${product.description}
+
                     </p>
-                </div>
 
-                <div>
-                    <h4 class="text-white font-bold text-sm mb-3 border-r-2 border-sudan-accent pr-2">أقسام المنتجات</h4>
-                    <ul class="space-y-2 text-xs text-gray-400">
-                        <li><a href="javascript:void(0)" onclick="scrollToCategory('food')" class="hover:text-sudan-accent">المؤن والمأكولات السودانية</a></li>
-                        <li><a href="javascript:void(0)" onclick="scrollToCategory('perfumes')" class="hover:text-sudan-accent">العطور والبخور والإنفاس</a></li>
-                        <li><a href="javascript:void(0)" onclick="scrollToCategory('beauty')" class="hover:text-sudan-accent">الدلكة السودانية ومنتجات التجميل</a></li>
-                    </ul>
-                </div>
 
-                <div>
-                    <h4 class="text-white font-bold text-sm mb-3 border-r-2 border-sudan-accent pr-2">روابط سريعة</h4>
-                    <ul class="space-y-2 text-xs text-gray-400">
-                        <li><a href="javascript:void(0)" onclick="switchView('store')" class="hover:text-sudan-accent">الرئيسية</a></li>
-                        <li><a href="javascript:void(0)" onclick="scrollToSection('about')" class="hover:text-sudan-accent">عن علامة الزبيدي</a></li>
-                        <li><a href="javascript:void(0)" onclick="scrollToSection('contact')" class="hover:text-sudan-accent">الطلب المباشر والتواصل</a></li>
-                    </ul>
-                </div>
+                    <div class="product-footer">
 
-                <div>
-                    <h4 class="text-white font-bold text-sm mb-3 border-r-2 border-sudan-accent pr-2">تواصل معنا</h4>
-                    <p class="text-xs text-gray-400 mb-3">تابعوا صفحاتنا للحصول على كل جديد من المنتجات والمحاصيل السودانية الطازجة.</p>
-                    <div class="flex space-x-3 space-x-reverse">
-                        <a href="#" class="w-9 h-9 rounded-xl bg-sudan-900 border border-sudan-800 flex items-center justify-center text-gray-400 hover:text-sudan-accent"><i class="fa-brands fa-whatsapp"></i></a>
-                        <a href="#" class="w-9 h-9 rounded-xl bg-sudan-900 border border-sudan-800 flex items-center justify-center text-gray-400 hover:text-sudan-accent"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="#" class="w-9 h-9 rounded-xl bg-sudan-900 border border-sudan-800 flex items-center justify-center text-gray-400 hover:text-sudan-accent"><i class="fa-brands fa-facebook"></i></a>
-                    </div>
-                </div>
-            </div>
+                        <div class="request-label">
 
-            <div class="border-t border-sudan-900 pt-6 text-center text-xs text-gray-500">
-                جميع الحقوق محفوظة &copy; 2026 لـ **الزبيدي للمنتجات السودانية (Al-Zubaidi Sudanese Products)**.
-            </div>
-        </div>
-    </footer>
+                            التجهيز
 
-    <script>
-        // Sudanese Products Initial Catalog Data
-        let products = [
-            // Category: food (المؤن والمأكولات)
-            {
-                id: 1,
-                name: 'الكركديه السوداني الملكي (أزهار كاملة)',
-                category: 'food',
-                price: 45,
-                unit: 'عبوة 500 جرام',
-                image: 'https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=600&q=80',
-                desc: 'كركديه سوداني طبيعي ممتاز ذو لون عنابي غامق وطعم منعش وغني بالفوائد.'
-            },
-            {
-                id: 2,
-                name: 'الصمغ العربي الهشاب الأصلي (درجة ممتازة)',
-                category: 'food',
-                price: 80,
-                unit: 'عبوة 500 جرام مطحون',
-                image: 'https://images.unsplash.com/photo-1546554137-f86b9593a222?auto=format&fit=crop&w=600&q=80',
-                desc: 'صمغ هشاب طبيعي نقاء 100% غني بالألياف الذائبة لتعزيز الصحة والنشاط.'
-            },
-            {
-                id: 3,
-                name: 'التبلدي السوداني (الحومر / القنقوليز)',
-                category: 'food',
-                price: 60,
-                unit: 'كيس 1 كجم',
-                image: 'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=600&q=80',
-                desc: 'ثمار التبلدي الطبيعية الطازجة لإعداد ألذ مشروب سوداني تقليدي مليء بفيامين C.'
-            },
-            {
-                id: 4,
-                name: 'الويكة السودانية (بامية مجففة مطحونة)',
-                category: 'food',
-                price: 35,
-                unit: 'عبوة 250 جرام',
-                image: 'https://images.unsplash.com/photo-1599940824399-b87987ceb72a?auto=format&fit=crop&w=600&q=80',
-                desc: 'ويكة سودانية خضراء ممتازة مطحونة بعناية لإعداد الملاح السوداني الأصيل.'
-            },
-            {
-                id: 5,
-                name: 'الدكوة السودانية (زبدة الفول السوداني الطبيعية)',
-                category: 'food',
-                price: 30,
-                unit: 'برطمان 500 جرام',
-                image: 'https://images.unsplash.com/photo-1588416936097-41850ab3d86d?auto=format&fit=crop&w=600&q=80',
-                desc: 'دكوة سودانية معصورة من أجود أنواع الفول السوداني المحمص بدون إضافات.'
-            },
-            {
-                id: 6,
-                name: 'زيت السمسم السوداني النقي (عصرة أولى على البارد)',
-                category: 'food',
-                price: 65,
-                unit: 'قارورة 1 لتر',
-                image: 'https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?auto=format&fit=crop&w=600&q=80',
-                desc: 'زيت سمسم سوداني أصيل معصور بلدي برائحة وطعم مميز للطعام والعلاج.'
-            },
-            {
-                id: 7,
-                name: 'العرديب السوداني الأصلي (تمر هندي بلدي)',
-                category: 'food',
-                price: 40,
-                unit: 'عبوة 500 جرام',
-                image: 'https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&w=600&q=80',
-                desc: 'عرديب طبيعي طازج لإعداد المشروبات الرمضانية والمقبلات السودانية الحامضة.'
-            },
-            {
-                id: 8,
-                name: 'الشطة السودانية الخضراء المجهزة (مع الشفوت)',
-                category: 'food',
-                price: 25,
-                unit: 'عبوة 300 جرام',
-                image: 'https://images.unsplash.com/photo-1588877329975-bc4242e23a49?auto=format&fit=crop&w=600&q=80',
-                desc: 'خلطة الشطة السودانية الحارة الحارقة المصنوعة على الطريقة التقليدية.'
-            },
+                            <strong>
+                                بالطلب
+                            </strong>
 
-            // Category: perfumes (العطور والبخور السوداني)
-            {
-                id: 9,
-                name: 'بخور الشاف السوداني الفاخر المعتق',
-                category: 'perfumes',
-                price: 120,
-                unit: 'علبة فاخرة 300 جرام',
-                image: 'https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=600&q=80',
-                desc: 'خشب شاف سوداني أصيل مطبوخ بالمسك والعطور العريس والزيوت الفواحة.'
-            },
-            {
-                id: 10,
-                name: 'خمرة الصندل السودانية الملكية',
-                category: 'perfumes',
-                price: 180,
-                unit: 'قارورة كريستال 100 مل',
-                image: 'https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=600&q=80',
-                desc: 'خمرة سودانية أصيلة محضرة من بودرة الصندل، المسك والزيوت العطرية الفاخرة.'
-            },
-            {
-                id: 11,
-                name: 'خمرة المحلب السودانية العريس',
-                category: 'perfumes',
-                price: 150,
-                unit: 'قارورة 100 مل',
-                image: 'https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=600&q=80',
-                desc: 'خمرة محلب سودانية تقليدية رائعة برائحة زكية ثابتة تدوم طويلاً.'
-            },
-            {
-                id: 12,
-                name: 'بخور الصندل السوداني الكبار',
-                category: 'perfumes',
-                price: 210,
-                unit: 'علبة 250 جرام',
-                image: 'https://images.unsplash.com/photo-1508746829417-e6f548d8d6ed?auto=format&fit=crop&w=600&q=80',
-                desc: 'قطع خشب الصندل السوداني المشبعة بأجود أنواع العطور والكرتل والظفرة.'
-            },
-
-            // Category: beauty (التجميل والعناية السودانية)
-            {
-                id: 13,
-                name: 'الدلكة السودانية الحمراء (دلكة العروس التقليدية)',
-                category: 'beauty',
-                price: 90,
-                unit: 'عبوة 400 جرام',
-                image: 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=600&q=80',
-                desc: 'دلكة سودانية معطرة ومصنوعة من المحلب والحطب المعطر لنعومة وتفتيح البشرة.'
-            },
-            {
-                id: 14,
-                name: 'الدلكة البيضاء السودانية للوجه والجسم',
-                category: 'beauty',
-                price: 75,
-                unit: 'عبوة 350 جرام',
-                image: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=600&q=80',
-                desc: 'دلكة الترمس والنشا الطبيعية لتنعيم وإزالة الخلايا الميتة والنضارة الفورية.'
-            },
-            {
-                id: 15,
-                name: 'زيت الكركار السوداني الأصلي للشعر',
-                category: 'beauty',
-                price: 65,
-                unit: 'برطمان 300 جرام',
-                image: 'https://images.unsplash.com/photo-1608248597261-e4d0947c6b1e?auto=format&fit=crop&w=600&q=80',
-                desc: 'خلطة الكركار السودانية بالودك وزيت السمسم والشمع لتكثيف وتطويل الشعر.'
-            },
-            {
-                id: 16,
-                name: 'الحناء السودانية الفاخرة (حناء الدامر)',
-                category: 'beauty',
-                price: 35,
-                unit: 'كيس 500 جرام',
-                image: 'https://images.unsplash.com/photo-1590439471364-192aa70c0b53?auto=format&fit=crop&w=600&q=80',
-                desc: 'حناء سودانية طبيعية خضراء ناعمة تعطي لوناً غامقاً وثابتاً للنقش والشعر.'
-            }
-        ];
-
-        let cart = [];
-        let salesChartInstance = null;
-
-        window.onload = function() {
-            renderProducts(products);
-            renderDashboardTable();
-            initSalesChart();
-            updateCartUI();
-        };
-
-        // Switch Main Views (Store vs Admin)
-        function switchView(viewName) {
-            const storeView = document.getElementById('store-view');
-            const dashView = document.getElementById('dashboard-view');
-            const navStore = document.getElementById('nav-store');
-            const navDash = document.getElementById('nav-dashboard');
-
-            if (viewName === 'dashboard') {
-                storeView.classList.add('hidden');
-                dashView.classList.remove('hidden');
-                navDash.classList.add('border-sudan-accent', 'bg-sudan-800');
-                navStore.classList.remove('text-sudan-accent');
-                navStore.classList.add('text-gray-300');
-            } else {
-                dashView.classList.add('hidden');
-                storeView.classList.remove('hidden');
-                navStore.classList.add('text-sudan-accent');
-                navStore.classList.remove('text-gray-300');
-            }
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function scrollToSection(id) {
-            switchView('store');
-            setTimeout(() => {
-                const el = document.getElementById(id);
-                if (el) el.scrollIntoView({ behavior: 'smooth' });
-            }, 100);
-        }
-
-        function renderProducts(items) {
-            const grid = document.getElementById('products-grid');
-            grid.innerHTML = '';
-
-            if (items.length === 0) {
-                grid.innerHTML = `
-                    <div class="col-span-full text-center py-12 glass-panel rounded-2xl">
-                        <i class="fa-solid fa-box-open text-4xl text-sudan-accent mb-3"></i>
-                        <p class="text-gray-300 font-bold">لم يتم العثور على منتجات تطابق البحث</p>
-                    </div>
-                `;
-                return;
-            }
-
-            items.forEach(product => {
-                const card = document.createElement('div');
-                card.className = "glass-panel rounded-2xl overflow-hidden border border-sudan-800 hover:border-sudan-accent/50 transition duration-300 flex flex-col justify-between group";
-                card.innerHTML = `
-                    <div>
-                        <div class="relative h-52 overflow-hidden bg-sudan-950">
-                            <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='https://placehold.co/600x400/1e120b/e6a13b?text=Al-Zubaidi+Sudan'">
-                            <span class="absolute top-3 right-3 px-3 py-1 rounded-full text-[11px] font-extrabold bg-sudan-950/90 text-sudan-accent border border-sudan-accent/30 backdrop-blur-md">
-                                ${getCategoryBadge(product.category)}
-                            </span>
                         </div>
-                        <div class="p-5">
-                            <h3 class="text-base font-bold text-white mb-1 leading-snug">${product.name}</h3>
-                            <span class="text-[11px] text-sudan-accent font-semibold block mb-2"><i class="fa-solid fa-scale-balanced ml-1"></i>${product.unit}</span>
-                            <p class="text-xs text-gray-400 line-clamp-2 leading-relaxed">${product.desc}</p>
-                        </div>
+
+
+                        <a
+                            href="${whatsappURL}"
+                            target="_blank"
+                            rel="noopener"
+                            class="product-order">
+
+                            <i class="fa-brands fa-whatsapp"></i>
+
+                            اطلب هذا المنتج
+
+                        </a>
+
                     </div>
-                    <div class="p-5 pt-0 flex items-center justify-between border-t border-sudan-800/60 mt-2">
-                        <div>
-                            <span class="text-[10px] text-gray-400 block">السعر</span>
-                            <span class="text-lg font-black gold-gradient-text">${product.price} <span class="text-xs font-bold text-sudan-accent">ر.س</span></span>
-                        </div>
-                        <button onclick="addToCart(${product.id})" class="px-4 py-2.5 rounded-xl gold-bg-gradient text-sudan-900 font-extrabold text-xs flex items-center gap-1.5 hover:shadow-md hover:shadow-sudan-accent/20 transition">
-                            <i class="fa-solid fa-cart-plus"></i>
-                            إضافة للسلة
-                        </button>
-                    </div>
-                `;
-                grid.appendChild(card);
-            });
+
+                </div>
+
+            </article>
+
+        `;
+    }
+
+
+    /* =========================================================
+       RENDER PRODUCTS
+    ========================================================= */
+
+    const productsGrid =
+        document.getElementById("productsGrid");
+
+    productsGrid.innerHTML =
+        PRODUCTS
+            .map(createProductCard)
+            .join("");
+
+
+    /* =========================================================
+       NAVBAR SCROLL
+    ========================================================= */
+
+    const navbar =
+        document.getElementById("navbar");
+
+    window.addEventListener("scroll", () => {
+
+        if (window.scrollY > 40) {
+
+            navbar.classList.add("scrolled");
+
+        } else {
+
+            navbar.classList.remove("scrolled");
+
         }
 
-        function getCategoryBadge(cat) {
-            switch(cat) {
-                case 'food': return 'مؤن ومأكولات';
-                case 'perfumes': return 'عطور وبخور';
-                case 'beauty': return 'تجميل ودلكة';
-                default: return 'منتجات أصيلة';
-            }
+    });
+
+
+    /* =========================================================
+       MOBILE MENU
+    ========================================================= */
+
+    const menuBtn =
+        document.getElementById("menuBtn");
+
+    const mobileMenu =
+        document.getElementById("mobileMenu");
+
+
+    menuBtn.addEventListener("click", () => {
+
+        mobileMenu.classList.toggle("active");
+
+        document.body.classList.toggle("menu-open");
+
+        const icon =
+            menuBtn.querySelector("i");
+
+        if (mobileMenu.classList.contains("active")) {
+
+            icon.classList.remove("fa-bars");
+            icon.classList.add("fa-xmark");
+
+        } else {
+
+            icon.classList.remove("fa-xmark");
+            icon.classList.add("fa-bars");
+
         }
 
-        // Category Filter Tabs
-        function filterCategory(category, evt) {
-            const buttons = document.querySelectorAll('.cat-filter-btn');
-            buttons.forEach(btn => {
-                btn.classList.remove('gold-bg-gradient', 'text-sudan-900');
-                btn.classList.add('text-gray-300');
+    });
+
+
+    /* =========================================================
+       CLOSE MOBILE MENU
+    ========================================================= */
+
+    document
+        .querySelectorAll(".mobile-links a")
+        .forEach(link => {
+
+            link.addEventListener("click", () => {
+
+                mobileMenu.classList.remove("active");
+
+                document.body.classList.remove("menu-open");
+
+                const icon =
+                    menuBtn.querySelector("i");
+
+                icon.classList.remove("fa-xmark");
+                icon.classList.add("fa-bars");
+
             });
 
-            if (evt) {
-                evt.target.classList.add('gold-bg-gradient', 'text-sudan-900');
-                evt.target.classList.remove('text-gray-300');
+        });
+
+
+    /* =========================================================
+       REVEAL ON SCROLL
+    ========================================================= */
+
+    const observer =
+        new IntersectionObserver(
+
+            entries => {
+
+                entries.forEach(entry => {
+
+                    if (entry.isIntersecting) {
+
+                        entry.target.classList.add("visible");
+
+                        observer.unobserve(entry.target);
+
+                    }
+
+                });
+
+            },
+
+            {
+                threshold: 0.12
             }
 
-            if (category === 'all') {
-                renderProducts(products);
-            } else {
-                const filtered = products.filter(p => p.category === category);
-                renderProducts(filtered);
-            }
-        }
+        );
 
-        function scrollToCategory(cat) {
-            switchView('store');
-            setTimeout(() => {
-                const el = document.getElementById('products-section');
-                if (el) el.scrollIntoView({ behavior: 'smooth' });
-                filterCategory(cat, null);
-            }, 100);
-        }
 
-        // Live Search Handler
-        function handleLiveSearch() {
-            const query = document.getElementById('live-search-input').value.toLowerCase().trim();
-            const filtered = products.filter(p => 
-                p.name.toLowerCase().includes(query) || 
-                p.desc.toLowerCase().includes(query)
-            );
-            renderProducts(filtered);
-        }
+    function observeRevealElements() {
 
-        function addToCart(id) {
-            const product = products.find(p => p.id === id);
-            if (!product) return;
+        document
+            .querySelectorAll(".reveal")
+            .forEach(element => {
 
-            const existing = cart.find(item => item.id === id);
-            if (existing) {
-                existing.qty++;
-            } else {
-                cart.push({ ...product, qty: 1 });
-            }
+                observer.observe(element);
 
-            updateCartUI();
-            showToast(`تمت إضافة "${product.name}" إلى السلة`);
-        }
-
-        function updateCartUI() {
-            const cartCount = document.getElementById('cart-count');
-            const cartItemsContainer = document.getElementById('cart-items-container');
-            const subtotalEl = document.getElementById('cart-subtotal');
-            const totalEl = document.getElementById('cart-total');
-
-            const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
-            cartCount.innerText = totalQty;
-
-            if (cart.length === 0) {
-                cartItemsContainer.innerHTML = `
-                    <div class="text-center py-12 text-gray-400">
-                        <i class="fa-solid fa-basket-shopping text-4xl mb-3 text-sudan-700"></i>
-                        <p class="text-sm font-semibold">سلة التسوق فارغة حالياً</p>
-                    </div>
-                `;
-                subtotalEl.innerText = '0 ر.س';
-                totalEl.innerText = '0 ر.س';
-                return;
-            }
-
-            cartItemsContainer.innerHTML = '';
-            let subtotal = 0;
-
-            cart.forEach(item => {
-                const itemTotal = item.price * item.qty;
-                subtotal += itemTotal;
-
-                const div = document.createElement('div');
-                div.className = "flex items-center justify-between p-3 bg-sudan-900 rounded-xl border border-sudan-800";
-                div.innerHTML = `
-                    <div class="flex items-center gap-3">
-                        <img src="${item.image}" class="w-12 h-12 rounded-lg object-cover">
-                        <div>
-                            <h4 class="text-xs font-bold text-white line-clamp-1">${item.name}</h4>
-                            <p class="text-xs text-sudan-accent font-semibold">${item.price} ر.س / ${item.unit}</p>
-                        </div>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <button onclick="changeQty(${item.id}, -1)" class="w-6 h-6 rounded-lg bg-sudan-800 text-white flex items-center justify-center text-xs font-bold hover:bg-sudan-700">-</button>
-                        <span class="text-xs text-white font-black w-4 text-center">${item.qty}</span>
-                        <button onclick="changeQty(${item.id}, 1)" class="w-6 h-6 rounded-lg bg-sudan-800 text-white flex items-center justify-center text-xs font-bold hover:bg-sudan-700">+</button>
-                    </div>
-                `;
-                cartItemsContainer.appendChild(div);
             });
 
-            subtotalEl.innerText = `${subtotal} ر.س`;
-            totalEl.innerText = `${subtotal} ر.س`;
+    }
+
+
+    observeRevealElements();
+
+
+    /* =========================================================
+       BACK TO TOP
+    ========================================================= */
+
+    const backTop =
+        document.getElementById("backTop");
+
+
+    window.addEventListener("scroll", () => {
+
+        if (window.scrollY > 500) {
+
+            backTop.classList.add("show");
+
+        } else {
+
+            backTop.classList.remove("show");
+
         }
 
-        function changeQty(id, delta) {
-            const item = cart.find(i => i.id === id);
-            if (!item) return;
+    });
 
-            item.qty += delta;
-            if (item.qty <= 0) {
-                cart = cart.filter(i => i.id !== id);
-            }
-            updateCartUI();
-        }
 
-        function toggleCartModal() {
-            document.getElementById('cart-modal').classList.toggle('hidden');
-        }
+    backTop.addEventListener("click", () => {
 
-        function openCheckoutModal() {
-            if (cart.length === 0) {
-                showToast('سلة التسوق فارغة! أضف بعض المنتجات أولاً.');
-                return;
-            }
-            toggleCartModal();
+        window.scrollTo({
 
-            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
-            const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+            top: 0,
 
-            document.getElementById('checkout-summary-count').innerText = `${totalQty} صنف`;
-            document.getElementById('checkout-summary-total').innerText = `${subtotal} ر.س`;
-            document.getElementById('checkout-modal').classList.remove('hidden');
-        }
+            behavior: "smooth"
 
-        function closeCheckoutModal() {
-            document.getElementById('checkout-modal').classList.add('hidden');
-        }
+        });
 
-        function handleFinalCheckout(e) {
-            e.preventDefault();
-            const name = document.getElementById('cust-name').value;
-            const phone = document.getElementById('cust-phone').value;
-            const address = document.getElementById('cust-address').value;
+    });
+
+
+    /* =========================================================
+       CURRENT YEAR
+    ========================================================= */
+
+    document.getElementById("year").textContent =
+        new Date().getFullYear();
+
+
+    /* =========================================================
+       SMOOTH INTERNAL LINKS
+    ========================================================= */
+
+    document
+        .querySelectorAll('a[href^="#"]')
+        .forEach(link => {
+
+            link.addEventListener("click", function(event) {
+
+                const targetId =
+                    this.getAttribute("href");
+
+                if (
+                    targetId === "#" ||
+                    !document.querySelector(targetId)
+                ) {
+                    return;
+                }
+
+                event.preventDefault();
+
+                document
+                    .querySelector(targetId)
+                    .scrollIntoView({
+                        behavior: "smooth",
+                        block: "start"
+                    });
+
+            });
+
+        });
+
+</script>
+
+
+</body>
+</html>

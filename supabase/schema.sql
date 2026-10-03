@@ -1,4 +1,9 @@
 -- ============================================================
+--  بورصة أسعار السودان — قاعدة البيانات الكاملة
+--  الإصدار: 1.1 (مع إصلاح Security Definer View)
+-- ============================================================
+
+-- ============================================================
 --  EXTENSIONS
 -- ============================================================
 create extension if not exists "uuid-ossp";
@@ -221,34 +226,52 @@ create policy "reports insert" on reports for insert
   with check (auth.uid() = reporter_id);
 
 -- ============================================================
---  VIEWS & FUNCTIONS
+--  VIEW: product_feed
+--  ✅ مع security_invoker=true لإصلاح تحذير Supabase
 -- ============================================================
-create or replace view product_feed as
+drop view if exists public.product_feed;
+
+create view public.product_feed
+with (security_invoker = true)
+as
 select
-  p.*,
-  pr.full_name   as trader_name,
-  pr.phone       as trader_phone,
-  pr.rating_avg  as trader_rating,
+  p.id, p.trader_id, p.name, p.description, p.category_id, p.emoji,
+  p.qty, p.unit, p.price, p.currency, p.price_usd,
+  p.state, p.city, p.market, p.min_order,
+  p.status, p.views_count, p.whatsapp_clicks,
+  p.expires_at, p.created_at, p.updated_at,
+  pr.full_name    as trader_name,
+  pr.phone        as trader_phone,
+  pr.rating_avg   as trader_rating,
   pr.rating_count as trader_rating_count,
-  pr.is_verified as trader_verified,
-  pr.is_banned   as trader_banned,
-  c.name_ar      as category_name,
-  c.slug         as category_slug,
-  c.icon         as category_icon
-from products p
-join profiles pr on pr.id = p.trader_id
-left join categories c on c.id = p.category_id
+  pr.is_verified  as trader_verified,
+  pr.is_banned    as trader_banned,
+  c.name_ar       as category_name,
+  c.slug          as category_slug,
+  c.icon          as category_icon
+from public.products p
+join public.profiles pr on pr.id = p.trader_id
+left join public.categories c on c.id = p.category_id
 where p.status = 'active' and pr.is_banned = false;
 
+grant select on public.product_feed to anon, authenticated;
+
+-- ============================================================
+--  FUNCTIONS: عدادات
+-- ============================================================
 create or replace function increment_views(pid uuid)
 returns void language sql security definer as $$
   update products set views_count = views_count + 1 where id = pid;
 $$;
 
+grant execute on function increment_views(uuid) to anon, authenticated;
+
 create or replace function increment_whatsapp_clicks(pid uuid)
 returns void language sql security definer as $$
   update products set whatsapp_clicks = whatsapp_clicks + 1 where id = pid;
 $$;
+
+grant execute on function increment_whatsapp_clicks(uuid) to anon, authenticated;
 
 create or replace function expire_old_products()
 returns void language sql security definer as $$
@@ -258,6 +281,16 @@ $$;
 
 -- ============================================================
 --  REALTIME
+--  ⚠️ إذا ظهر خطأ "already added" — تجاهله (يعني مفعّل مسبقاً)
 -- ============================================================
-alter publication supabase_realtime add table products;
-alter publication supabase_realtime add table reports;
+do $$ begin
+  alter publication supabase_realtime add table products;
+exception when duplicate_object then null; end $$;
+
+do $$ begin
+  alter publication supabase_realtime add table reports;
+exception when duplicate_object then null; end $$;
+
+-- ============================================================
+--  ✅ انتهى
+-- ============================================================

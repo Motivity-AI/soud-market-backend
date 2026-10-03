@@ -74,10 +74,10 @@
 
 <script type="module">
 // ============================================================================
-//  1) الإعدادات — بدّل هذين المتغيرين بمفاتيح مشروعك
+//  1) الإعدادات — مفاتيحك مُدخلة مسبقاً
 // ============================================================================
-const SUPABASE_URL = 'https://YOUR_PROJECT.supabase.co';
-const SUPABASE_ANON_KEY = 'YOUR_ANON_KEY';
+const SUPABASE_URL = 'https://jeugwareeryetubxwjjx.supabase.co';
+const SUPABASE_ANON_KEY = 'sb_publishable_G5-JB9Xkrvo6mvSPLbbycA_ym43OOJ6';
 
 // ============================================================================
 //  2) استيراد Supabase
@@ -322,7 +322,6 @@ async function loadCategories() {
 async function loadProducts() {
   const { data } = await sb.from('product_feed').select('*').order('created_at', { ascending:false }).limit(60);
   state.products = data ?? [];
-  // تخزين مؤقت للقراءة أوفلاين
   for (const p of state.products) await idbPut('cache', p).catch(()=>{});
 }
 async function loadMyProducts() {
@@ -425,7 +424,6 @@ function emptyState(title, desc) {
 //  12) الصفحات
 // ============================================================================
 
-// -------- 12.1 الصفحة الرئيسية --------
 function viewHome() {
   const cats = state.categories;
   const f = state.filters;
@@ -488,7 +486,6 @@ function viewHome() {
     </div>`;
 }
 
-// -------- 12.2 صفحة المنتج --------
 function viewProduct(id) {
   const p = state.products.find(x => x.id === id) || state.myProducts.find(x => x.id === id);
   if (!p) return emptyState('المنتج غير موجود', 'ربما حُذف أو الرابط غير صحيح');
@@ -527,7 +524,6 @@ function viewProduct(id) {
     </div>`;
 }
 
-// -------- 12.3 تسجيل الدخول --------
 function viewLogin() {
   return `
     <div class="max-w-md mx-auto bg-white rounded-2xl border p-6 sm:p-8 mt-8">
@@ -543,7 +539,6 @@ function viewLogin() {
     </div>`;
 }
 
-// -------- 12.4 التسجيل --------
 function viewRegister() {
   return `
     <div class="max-w-lg mx-auto bg-white rounded-2xl border p-6 sm:p-8">
@@ -571,7 +566,6 @@ function viewRegister() {
     </div>`;
 }
 
-// -------- 12.5 لوحة التاجر --------
 function viewDashboard() {
   if (!state.user) { location.hash = '#/login'; return ''; }
   const list = state.myProducts;
@@ -609,7 +603,6 @@ function viewDashboard() {
     </div>`;
 }
 
-// -------- 12.6 نموذج المنتج --------
 function viewProductForm(initial = null) {
   if (!state.user) { location.hash = '#/login'; return ''; }
   const f = initial || {
@@ -675,7 +668,6 @@ function viewProductForm(initial = null) {
     </div>`;
 }
 
-// -------- 12.7 لوحة الأدمن --------
 function viewAdmin() {
   if (state.profile?.role !== 'admin') { location.hash = '#/'; return ''; }
   const tabs = `
@@ -758,7 +750,6 @@ async function render() {
   const app = $('#app');
   state.route = path;
 
-  // تحميل البيانات اللازمة حسب الصفحة
   if (parts.length === 0) {
     if (state.products.length === 0) await loadProducts();
     app.innerHTML = viewHome();
@@ -885,7 +876,6 @@ function bindProductForm(initial) {
   const form = $('#product-form');
   if (!form) return;
 
-  // Emoji picker
   $$('.emoji-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const emoji = btn.dataset.emoji;
@@ -970,7 +960,7 @@ function bindAdmin() {
 }
 
 // ============================================================================
-//  16) Realtime — استقبال التحديثات الفورية
+//  16) Realtime
 // ============================================================================
 function setupRealtime() {
   sb.channel('products-live')
@@ -1036,7 +1026,7 @@ if ('serviceWorker' in navigator) {
 }
 
 // ============================================================================
-//  19) الدوال المعرّضة للنطاق العام (للأزرار inline)
+//  19) الدوال المعرّضة للنطاق العام
 // ============================================================================
 window.__logout = signOut;
 window.__sync = async () => {
@@ -1086,37 +1076,26 @@ window.__banProduct = async (id) => {
 //  20) نقطة البداية
 // ============================================================================
 async function init() {
-  if (SUPABASE_URL.includes('YOUR_PROJECT')) {
-    $('#app').innerHTML = `
-      <div class="max-w-2xl mx-auto bg-amber-50 border-2 border-amber-300 rounded-2xl p-6 text-center">
-        <div class="text-5xl mb-3">⚙️</div>
-        <h1 class="text-xl font-bold mb-3">يجب ضبط مفاتيح Supabase أولاً</h1>
-        <p class="text-sm text-gray-700 mb-4">افتح الملف <code class="bg-white px-2 py-1 rounded">index.html</code> وبدّل:</p>
-        <pre class="bg-white p-4 rounded-xl text-left text-xs overflow-x-auto mb-4">const SUPABASE_URL = 'https://YOUR_PROJECT.supabase.co';
-const SUPABASE_ANON_KEY = 'YOUR_ANON_KEY';</pre>
-        <p class="text-xs text-gray-500">بمفاتيح مشروعك من supabase.com → Settings → API</p>
-      </div>`;
-    return;
+  try {
+    await loadCategories();
+    await loadSession();
+    await refreshPending();
+    setupRealtime();
+    setupNetwork();
+    await render();
+  } catch (err) {
+    console.error(err);
+    $('#app').innerHTML = `<div class="bg-red-50 border border-red-200 rounded-2xl p-6 text-center">
+      <div class="text-4xl mb-3">⚠️</div>
+      <h2 class="font-bold mb-2">حدث خطأ في التحميل</h2>
+      <p class="text-sm text-red-700 mb-4">${esc(err.message)}</p>
+      <p class="text-xs text-gray-500">تأكد من تشغيل schema.sql في Supabase SQL Editor</p>
+    </div>`;
   }
-  await loadCategories();
-  await loadSession();
-  await refreshPending();
-  setupRealtime();
-  setupNetwork();
-  await render();
-
-  window.addEventListener('hashchange', render);
 }
 
-// مستمع تغيير الـ hash قبل الـ init
 window.addEventListener('hashchange', render);
-init().catch(err => {
-  console.error(err);
-  $('#app').innerHTML = `<div class="bg-red-50 border border-red-200 rounded-2xl p-6 text-center">
-    <div class="text-4xl mb-3">⚠️</div>
-    <h2 class="font-bold mb-2">حدث خطأ</h2>
-    <p class="text-sm text-red-700">${esc(err.message)}</p></div>`;
-});
+init();
 </script>
 </body>
 </html>
